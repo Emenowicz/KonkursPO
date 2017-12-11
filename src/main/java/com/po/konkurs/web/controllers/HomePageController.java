@@ -1,4 +1,4 @@
-package com.po.konkurs.view;
+package com.po.konkurs.web.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomePageController {
-    @RequestMapping(value = {"/","/login"}, method = RequestMethod.GET)
-    public String login(Model model, String error, String logout){
-        if(error != null){
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
+    public String login(Model model, String error, String logout) {
+        if (error != null) {
             model.addAttribute("error", "Your username and password are invalid");
         }
 
-        if(logout != null){
+        if (logout != null) {
             model.addAttribute("message", "You have been logged out succesfully");
         }
 
@@ -46,15 +46,23 @@ public class HomePageController {
     }
 
     @RequestMapping(value = {"/pu2"}, method = RequestMethod.GET)
-    public String pu2() { return "pu2_artwork_overview";}
+    public String pu2() {
+        return "pu2_artwork_overview";
+    }
 
     @RequestMapping(value = {"/rate_artwork"}, method = RequestMethod.GET)
-    public String pu2_artwork_review() { return "pu2_artwork_review";}
+    public String pu2_artwork_review() {
+        return "pu2_artwork_review";
+    }
 
     @RequestMapping(value = {"/assign_prize"}, method = RequestMethod.GET)
-    public String pu2_prize_assigning() { return "pu2_prize_assigning";}
+    public String pu2_prize_assigning() {
+        return "pu2_prize_assigning";
+    }
 
     @RequestMapping(value = {"/show_review"}, method = RequestMethod.GET)
-    public String pu2_show_review() { return "pu2_show_review";}
+    public String pu2_show_review() {
+        return "pu2_show_review";
+    }
 
 }
