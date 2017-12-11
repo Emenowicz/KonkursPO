@@ -9,8 +9,10 @@
     <meta name="author" content="">
 
     <title>Log in with your account</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
 
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <script src="/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -23,7 +25,7 @@
         </div>
     </div>
     <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Log in</h2>
+        <h2 class="form-heading">Log ąć in</h2>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
@@ -45,7 +47,5 @@
         <a href="#" class="btn btn-info">PU3</a>
     </div>
 </div>
-<script src="/jquery/jquery-3.2.1.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
