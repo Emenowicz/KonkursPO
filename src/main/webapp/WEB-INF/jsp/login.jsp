@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -25,7 +25,7 @@
         </div>
     </div>
     <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Log ąć in</h2>
+        <h2 class="form-heading">Log In</h2>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
