@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title></title>
+    <title>Rejestracja</title>
 
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
     <script src="/jquery/jquery-3.2.1.min.js"></script>
@@ -35,38 +35,38 @@
     <form class="form-horizontal" method="GET" action="/id_confirm" novalidate="novalidate">
         <div class="panel panel-flat col-lg-12">
             <div class="panel-heading">
-                <h5 class="panel-title text-info">INFORMATION</h5>
+                <h5 class="panel-title text-info">INFORMACJE</h5>
             </div>
             <div class="panel-body">
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Name<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-1">Imię<span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="text" name="f_nome" id="f_nome" class="form-control" required="required"
+                            <input type="text" name="name" id="name" class="form-control" required="required"
                                    placeholder="" data-msg-required="This field is required" aria-required="true">
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Surname<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-1">Nazwisko<span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="text" name="f_cognome" id="f_cognome" class="form-control" required="required"
+                            <input type="text" name="lastname" id="lastname" class="form-control" required="required"
                                    placeholder="" data-msg-required="This field is required" aria-required="true">
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Alias </label>
+                        <label class="control-label col-lg-1">Pseudonim artystyczny</label>
                         <div class="col-lg-9">
-                            <input type="text" name="f_alias" id="f_alias" class="form-control" placeholder="">
+                            <input type="text" name="pseudonim" id="pseudonim" class="form-control" placeholder="">
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Nationality<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-1">Narodowość<span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <select class="form-control" id="f_nazionalita" name="f_nazionalita" required="">
+                            <select class="form-control" id="nationality" name="nationality" required="">
                                 <option></option>
                                 <option value="1">Afghanistan</option>
                                 <option value="2">Åland Islands</option>
@@ -323,18 +323,19 @@
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Place of birth<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-1">Miejsce urodzenia<span
+                                class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="text" name="f_luogonascita" id="f_luogonascita" class="form-control">
+                            <input type="text" name="birthplace" id="birthplace" class="form-control">
                         </div>
                     </div>
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Date of birth<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-1">Data urodzenia<span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <div class="input-group"> <!-- Date input -->
-                                <input class="form-control" id="datepicker" name="date" placeholder="MM/DD/YYY"
+                                <input class="form-control" id="datepicker" name="dateofbirth" placeholder="MM/DD/YYY"
                                        type="text"/>
                             </div>
                         </div>
@@ -351,17 +352,17 @@
         </div>
         <div class="panel panel-flat col-lg-12">
             <div class="panel-heading">
-                <h5 class="panel-title text-info">ADDRESS</h5>
+                <h5 class="panel-title text-info">ADRES</h5>
             </div>
 
             <div class="panel-body">
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Country<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-1">Kraj<span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <select data-placeholder="Select..." class="form-control" id="f_nazione"
-                                    name="f_nazione" required="">
+                            <select data-placeholder="Select..." class="form-control" id="country"
+                                    name="country" required="">
                                 <option></option>
                                 <option value="1">Afghanistan</option>
                                 <option value="2">Åland Islands</option>
@@ -618,34 +619,34 @@
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">City<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-1">Miasto<span class="text-danger">*</span></label>
                         <div class="col-lg-5">
-                            <input type="text" name="f_citta" id="f_citta" class="form-control" required="required">
+                            <input type="text" name="city" id="city" class="form-control" required="required">
                         </div>
-                        <label class="control-label col-lg-1 text-right">Postcode<span
+                        <label class="control-label col-lg-1 text-left">Kod pocztowy<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <input type="text" name="f_cap" id="f_cap" class="form-control" required="required">
+                            <input type="text" name="postcode" id="postcode" class="form-control" required="required">
                         </div>
                     </div>
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Address<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-1">Ulica<span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="text" name="f_indirizzo" id="f_indirizzo" class="form-control">
+                            <input type="text" name="street" id="street" class="form-control">
                         </div>
                     </div>
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Phone<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-1">Nr telefonu<span class="text-danger">*</span></label>
                         <div class="col-lg-4">
-                            <input type="text" name="f_telefono" id="f_telefono" class="form-control">
+                            <input type="text" name="telephone" id="telephone" class="form-control">
                         </div>
-                        <label class="control-label col-lg-1 text-right">Mobile phone</label>
+                        <label class="control-label col-lg-1 text-left">Nr komórkowy</label>
                         <div class="col-lg-4">
-                            <input type="text" name="f_mobile" id="f_mobile" class="form-control" placeholder="">
+                            <input type="text" name="mobile" id="mobile" class="form-control" placeholder="">
                         </div>
                     </div>
 
@@ -653,20 +654,21 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-1">E-mail<span class="text-danger">*</span></label>
                         <div class="col-lg-4">
-                            <input type="text" name="f_email" id="f_email" class="form-control">
+                            <input type="text" name="email" id="email" class="form-control">
                         </div>
-                        <label class="control-label col-lg-1 text-right">Repeat e-mail<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-1 text-left">Powtórz e-mail<span
+                                class="text-danger">*</span></label>
                         <div class="col-lg-4">
-                            <input type="text" name="f_email2" id="f_email2" class="form-control">
+                            <input type="text" name="email_confirmation" id="email_confirmation" class="form-control">
                         </div>
                     </div>
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Web site </label>
+                        <label class="control-label col-lg-1">Adres strony internetowej</label>
                         <div class="col-lg-9">
-                            <input type="text" name="f_website" id="f_website" class="form-control" placeholder=""
-                                   data-msg-url="Please enter a valid URL">
+                            <input type="text" name="website" id="website" class="form-control" placeholder=""
+                                   data-msg-url="Wprowadź poprawny adres">
                         </div>
                     </div>
 
@@ -676,18 +678,18 @@
         </div>
         <div class="panel panel-flat col-lg-12">
             <div class="panel-heading">
-                <h5 class="panel-title text-info">BIOGRAPHY</h5>
+                <h5 class="panel-title text-info">BIOGRAFIA</h5>
             </div>
 
             <div class="panel-body">
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Biography<span class="text-danger">*</span><span
-                                class="text-size-small"><br><br><em>5000 characters max</em></span></label>
+                        <label class="control-label col-lg-1">Biografia<span class="text-danger">*</span><span
+                                class="text-size-small"><br><br><em>Maksymalnie 5000 znaków</em></span></label>
                         <div class="col-lg-9">
-                            <textarea class="form-control" rows="5" type="text" name="biografia_content"
-                                      id="biografia_content" value="" maxlength="5000"></textarea>
+                            <textarea class="form-control" rows="5" type="text" name="biography"
+                                      id="biography" value="" maxlength="5000"></textarea>
                         </div>
                     </div>
                 </div>
@@ -695,7 +697,7 @@
         </div>
         <div class="panel panel-flat col-lg-12">
             <div class="panel-heading">
-                <h5 class="panel-title text-info">PRIVACY</h5>
+                <h5 class="panel-title text-info">PRYWATNOŚĆ</h5>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -703,10 +705,10 @@
                     <div class="col-lg-10 text-left">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input" name="regolamento" id="regolamento">
-                                I declare that I have read and accepted all the rules of the Arte Laguna Prize
-                                Regulations published on the site <a href="https://www.artelagunaprize.com"
-                                                                     target="_blank">www.artelagunaprize.com</a>
+                                <input type="checkbox" class="form-check-input" name="rules" id="rules">
+                                Oświadczam że zapoznałem się i akceptuję wszystkie warunki regulaminu konkursu Arte
+                                Laguna Prize Regulamin dostępny tutaj:<a href="https://www.artelagunaprize.com"
+                                                                         target="_blank">www.artelagunaprize.com</a>
                             </label>
                             <div style="width:100%;clear: both; height: 5px;"></div>
                         </div>
@@ -721,9 +723,9 @@
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input" name="privacy" id="privacy">
-                                I Autorize MoCa Association to use my information as the Italian Privacy Law
-                                675/96 and D.Lgs. 196/2003, also for the purpose of inclusion in databases
-                                operated by The Organization. </label>
+                                Upoważniam Stowarzyszenie MoCa do wykorzystywania moich informacji na podstawie włoskich
+                                przepisów o ochronie prywatności 675/96 i D.Lgs. 196/2003, również w celu włączenia do
+                                baz danych prowadzonych przez Organizację.</label>
                             <div style="width:100%;clear: both; height: 5px;"></div>
                         </div>
                         <div style="width:100%;clear: both; height: 20px;"></div>
@@ -741,7 +743,7 @@
                         <div class="col-lg-1"></div>
                         <div class="text-center col-lg-10" style="margin-left:0;margin-right:0px;padding-right:0;">
                             <div class="form-group"></div>
-                            <button type="submit" class="btn btn-info">SUBMIT</button>
+                            <button type="submit" class="btn btn-info">DALEJ</button>
 
 
                         </div>
@@ -757,12 +759,12 @@
             <div class="col-lg-1"></div>
             <div class="col-lg-5 text-right" style="margin-left:0;margin-right:0px;padding-right:0;">
                 <form method="GET" action="/id_confirm">
-                    <button type="submit" class="btn btn-info">Next(below 25)</button>
+                    <button type="submit" class="btn btn-info">Dalej(poniżej 25 lat)</button>
                 </form>
             </div>
             <div class="col-lg-5 text-left" style="margin-left:0;margin-right:0px;padding-right:0;">
-                <form method="GET" action="/id_confirm">
-                    <button type="submit" class="btn btn-info">Next(above 25)</button>
+                <form method="GET" action="/payment_confirmation">
+                    <button type="submit" class="btn btn-info">Dalej(powyżej 25 lat)</button>
                 </form>
             </div>
             <div class="col-lg-1"></div>

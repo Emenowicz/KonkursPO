@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Signup</title>
+    <title>Rejestracja</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,41 +20,41 @@
         </div>
         <div class="panel panel-flat col-lg-12" name="documentoidentita" id="documentoidentita">
             <div class="panel-heading">
-                <h5 class="panel-title text-info">YOUR WORK</h5>
+                <h5 class="panel-title text-info">TWOJA PRACA</h5>
             </div>
 
             <div class="panel-body">
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-2"></div>
-                        <div class="col-lg-9"><p>Upload a copy of your work.</p></div>
+                        <div class="col-lg-9"><p>Prześlij kopię twojej pracy.</p></div>
                         <div class="col-lg-1"></div>
                     </div>
                     <div class="row">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1"><span class="text-info">Your work</span></label>
+                        <label class="control-label col-lg-1"><span class="text-info">Twoja praca</span></label>
                         <div class="col-lg-9">
                             <div class="form-group">
-                                <input type="file" class="form-control-file" id="exampleInputFile"
+                                <input type="file" class="form-control-file" id="work_copy"
                                        aria-describedby="fileHelp">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1"><span class="text-info">Category</span></label>
+                        <label class="control-label col-lg-1"><span class="text-info">Kategoria</span></label>
                         <div class="col-lg-9">
                             <div class="form-group">
                                 <select class="form-control" id="category" name="category" required="">
                                     <option></option>
-                                    <option value="1">Painting</option>
-                                    <option value="2">Photography</option>
-                                    <option value="3">Sculpture and installation</option>
-                                    <option value="4">Video art and short-term films</option>
-                                    <option value="5">Performances</option>
-                                    <option value="6">Virtual art</option>
-                                    <option value="7">Digital graphics</option>
-                                    <option value="8">Environmental art</option>
+                                    <option value="1">Malarstwo</option>
+                                    <option value="2">Sztuka fotografii</option>
+                                    <option value="3">Rzeźba i instalacja</option>
+                                    <option value="4">Sztuka wideo i filmy krótkometrażowe</option>
+                                    <option value="5">Występy</option>
+                                    <option value="6">Sztuka wirtualna</option>
+                                    <option value="7">Grafika cyfrowa</option>
+                                    <option value="8">Sztuka środowiskowa</option>
                                     <option value="9">Urban art</option>
                                 </select>
                             </div>
@@ -71,7 +71,7 @@
                         <div class="col-lg-1"></div>
                         <div class="text-center col-lg-10" style="margin-left:0;margin-right:0px;padding-right:0;">
                             <div class="form-group"></div>
-                            <button type="submit" class="btn btn-info">SUBMIT</button>
+                            <button type="submit" class="btn btn-info">DALEJ</button>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>

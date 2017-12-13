@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Log in with your account</title>
+    <title>Zaloguj się</title>
 
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
     <script src="/jquery/jquery-3.2.1.min.js"></script>
@@ -25,7 +25,7 @@
         </div>
     </div>
     <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Log In</h2>
+        <h2 class="form-heading">Zaloguj się</h2>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
@@ -35,8 +35,8 @@
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-            <button class="btn btn-lg btn-info btn-block" type="submit">Log In</button>
-            <h4 class="text-center"><a href="/registration" class="text-info">Create an account</a></h4>
+            <button class="btn btn-lg btn-info btn-block" type="submit">Zaloguj się</button>
+            <h4 class="text-center"><a href="/registration" class="text-info">Utwórz konto</a></h4>
         </div>
 
     </form>

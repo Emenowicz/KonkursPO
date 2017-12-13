@@ -20,23 +20,21 @@
         </div>
         <div class="panel panel-flat col-lg-12" name="documentoidentita" id="documentoidentita">
             <div class="panel-heading">
-                <h5 class="panel-title text-info">PAYMENT CONFIRMATION</h5>
+                <h5 class="panel-title text-info">POTWIERDZENIE PŁATNOŚCI</h5>
             </div>
 
             <div class="panel-body">
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-2"></div>
-                        <div class="col-lg-9"><p>Upload a copy of payment confirmation.</p></div>
+                        <div class="col-lg-9"><p>Prześlij kopię potwierdzenia płatnośći</p></div>
                         <div class="col-lg-1"></div>
                     </div>
                     <div class="row">
                         <div class="col-lg-2"></div>
-                        <%--<label class="control-label col-lg-1"><span--%>
-                        <%--class="text-info">Payment confirmation</span></label>--%>
                         <div class="col-lg-9">
                             <div class="form-group">
-                                <input type="file" class="form-control-file" id="exampleInputFile"
+                                <input type="file" class="form-control-file" id="payment_confirmation"
                                        aria-describedby="fileHelp">
                             </div>
                         </div>
@@ -51,7 +49,7 @@
                         <div class="col-lg-1"></div>
                         <div class="text-center col-lg-10" style="margin-left:0;margin-right:0px;padding-right:0;">
                             <div class="form-group"></div>
-                            <button type="submit" class="btn btn-info">SUBMIT</button>
+                            <button type="submit" class="btn btn-info">DALEJ</button>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
