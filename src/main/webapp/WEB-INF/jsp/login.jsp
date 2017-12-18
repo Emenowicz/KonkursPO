@@ -17,28 +17,31 @@
 </head>
 
 <body>
-
-<div class="container">
-    <div class="panel panel-flat">
-        <div class="panel-heading" style="padding-top: 20px;">
-            <h1 class="panel-title text-info">ArteART Prize Laguna 17.18</h1>
-        </div>
+<div class="jumbotron-fluid">
+    <div class="container col-lg-10">
+        <h1 class="display-3 text-info">ArteART Prize Laguna 17.18</h1>
     </div>
+</div>
+<div class="container">
     <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Zaloguj się</h2>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Zaloguj się</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group ${error != null ? 'has-error' : ''}">
+                    <span>${message}</span>
+                    <input name="username" type="text" class="form-control" placeholder="Username"
+                           autofocus="true"/>
+                    <input name="password" type="password" class="form-control" placeholder="Password"/>
+                    <span>${error}</span>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-        <div class="form-group ${error != null ? 'has-error' : ''}">
-            <span>${message}</span>
-            <input name="username" type="text" class="form-control" placeholder="Username"
-                   autofocus="true"/>
-            <input name="password" type="password" class="form-control" placeholder="Password"/>
-            <span>${error}</span>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
-            <button class="btn btn-lg btn-info btn-block" type="submit">Zaloguj się</button>
-            <h4 class="text-center"><a href="/registration" class="text-info">Utwórz konto</a></h4>
+                    <button class="btn btn-lg btn-info btn-block" type="submit">Zaloguj się</button>
+                    <h4 class="text-center"><a href="/registration" class="text-info">Utwórz konto</a></h4>
+                </div>
+            </div>
         </div>
-
     </form>
 
     <div class="btn-group btn-group-justified">

@@ -10,15 +10,15 @@
     <script src="/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
-    <div class="panel panel-flat">
-        <div class="panel-heading" style="padding-top: 20px;">
-            <h1 class="panel-title text-info">ArteART Prize Laguna 17.18</h1>
-        </div>
+<div class="jumbotron-fluid">
+    <div class="container col-lg-10">
+        <h1 class="display-3 text-info">ArteART Prize Laguna 17.18</h1>
     </div>
+</div>
+<div class="container">
     <div class="panel panel-flat col-lg-12">
         <div class="panel-body">
-            <h1 class="display-1 text-center">Rejestracja przebiegła pomyślnie!</h1>
+            <h1 class="display-4 text-center">Rejestracja przebiegła pomyślnie!</h1>
         </div>
     </div>
     <div class="panel panel-flat col-lg-12">
@@ -33,7 +33,6 @@
                     <div class="col-lg-1"></div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

@@ -25,49 +25,49 @@
 
     <title>Submit for competition</title>
 </head>
-<body class="navbar-bottom pace-done">
-<div class="container">
-    <div class="panel panel-flat">
-        <div class="panel-heading" style="padding-top: 20px;">
-            <h1 class="panel-title text-info">ArteART Prize Laguna 17.18</h1>
-        </div>
+<body>
+<div class="jumbotron-fluid">
+    <div class="container col-lg-10">
+        <h1 class="display-3 text-info">ArteART Prize Laguna 17.18</h1>
     </div>
-    <form class="form-horizontal" method="GET" action="/id_confirm" novalidate="novalidate">
-        <div class="panel panel-flat col-lg-12">
-            <div class="panel-heading">
-                <h5 class="panel-title text-info">INFORMACJE</h5>
+</div>
+<div class="container">
+    <form class="form-horizontal" method="GET" action="/complete" novalidate="novalidate">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title text-info">INFORMACJE</h5>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Imię<span class="text-danger">*</span></label>
-                        <div class="col-lg-9">
+                        <label class="control-label col-lg-2">Imię<span class="text-danger">*</span></label>
+                        <div class="col-lg-8">
                             <input type="text" name="name" id="name" class="form-control" required="required"
                                    placeholder="" data-msg-required="This field is required" aria-required="true">
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Nazwisko<span class="text-danger">*</span></label>
-                        <div class="col-lg-9">
+                        <label class="control-label col-lg-2">Nazwisko<span class="text-danger">*</span></label>
+                        <div class="col-lg-8">
                             <input type="text" name="lastname" id="lastname" class="form-control" required="required"
                                    placeholder="" data-msg-required="This field is required" aria-required="true">
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Pseudonim artystyczny</label>
-                        <div class="col-lg-9">
+                        <label class="control-label col-lg-2">Pseudonim artystyczny</label>
+                        <div class="col-lg-8">
                             <input type="text" name="pseudonim" id="pseudonim" class="form-control" placeholder="">
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Narodowość<span class="text-danger">*</span></label>
-                        <div class="col-lg-9">
-                            <select class="form-control" id="nationality" name="nationality" required="">
-                                <option></option>
+                        <label class="control-label col-lg-2">Narodowość<span class="text-danger">*</span></label>
+                        <div class="col-lg-8">
+                            <select class="form-control" id="nationality" name="nationality" required="required">
+                                <option selected disabled>Wybierz kraj...</option>
                                 <option value="1">Afghanistan</option>
                                 <option value="2">Åland Islands</option>
                                 <option value="3">Albania</option>
@@ -323,17 +323,17 @@
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Miejsce urodzenia<span
+                        <label class="control-label col-lg-2">Miejsce urodzenia<span
                                 class="text-danger">*</span></label>
-                        <div class="col-lg-9">
+                        <div class="col-lg-8">
                             <input type="text" name="birthplace" id="birthplace" class="form-control">
                         </div>
                     </div>
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Data urodzenia<span class="text-danger">*</span></label>
-                        <div class="col-lg-9">
+                        <label class="control-label col-lg-2">Data urodzenia<span class="text-danger">*</span></label>
+                        <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
                                 <input class="form-control" id="datepicker" name="dateofbirth" placeholder="MM/DD/YYY"
                                        type="text"/>
@@ -348,22 +348,53 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        <div class="panel panel-flat col-lg-12">
-            <div class="panel-heading">
-                <h5 class="panel-title text-info">ADRES</h5>
+
+        <div class="card d-none">
+            <div class="card-header">
+                <h5 class="card-title text-info">DOWÓD OSOBISTY</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-8 text-muted"><p>
+                            Aby mieć prawo do obniżonej opłaty zarezerwowanej dla artystów PONIŻEJ-25, musisz
+                            przesłać
+                            kopię dowodu osobistego. Dopuszczony format JPG, DOC lub PDF Max 2MB</p></div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <label class="control-label col-lg-2"><span class="text-info">Dowód osobisty</span><br>Doc, jpg
+                            lub pdf</label>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="id_card"
+                                       aria-describedby="fileHelp">
+                                <small id="fileHelp" class="form-text text-muted">2 mb max</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title text-info">ADRES</h5>
             </div>
 
-            <div class="panel-body">
+            <div class="card-body">
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Kraj<span class="text-danger">*</span></label>
-                        <div class="col-lg-9">
-                            <select data-placeholder="Select..." class="form-control" id="country"
-                                    name="country" required="">
-                                <option></option>
+                        <label class="control-label col-lg-2">Kraj<span class="text-danger">*</span></label>
+                        <div class="col-lg-8">
+                            <select class="form-control" id="country"
+                                    name="country" required="required">
+                                <option selected hidden>Wybierz kraj...</option>
                                 <option value="1">Afghanistan</option>
                                 <option value="2">Åland Islands</option>
                                 <option value="3">Albania</option>
@@ -619,75 +650,72 @@
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Miasto<span class="text-danger">*</span></label>
-                        <div class="col-lg-5">
+                        <label class="control-label col-lg-2">Miasto<span class="text-danger">*</span></label>
+                        <div class="col-lg-4">
                             <input type="text" name="city" id="city" class="form-control" required="required">
                         </div>
-                        <label class="control-label col-lg-1 text-left">Kod pocztowy<span
+                        <label class="control-label col-lg-2 text-right">Kod pocztowy<span
                                 class="text-danger">*</span></label>
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <input type="text" name="postcode" id="postcode" class="form-control" required="required">
                         </div>
                     </div>
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Ulica<span class="text-danger">*</span></label>
-                        <div class="col-lg-9">
+                        <label class="control-label col-lg-2">Ulica<span class="text-danger">*</span></label>
+                        <div class="col-lg-8">
                             <input type="text" name="street" id="street" class="form-control">
                         </div>
                     </div>
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Nr telefonu<span class="text-danger">*</span></label>
-                        <div class="col-lg-4">
+                        <label class="control-label col-lg-2">Nr telefonu<span class="text-danger">*</span></label>
+                        <div class="col-lg-3">
                             <input type="text" name="telephone" id="telephone" class="form-control">
                         </div>
-                        <label class="control-label col-lg-1 text-left">Nr komórkowy</label>
-                        <div class="col-lg-4">
+                        <label class="control-label col-lg-2 text-right">Nr komórkowy</label>
+                        <div class="col-lg-3">
                             <input type="text" name="mobile" id="mobile" class="form-control" placeholder="">
                         </div>
                     </div>
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">E-mail<span class="text-danger">*</span></label>
-                        <div class="col-lg-4">
+                        <label class="control-label col-lg-2">E-mail<span class="text-danger">*</span></label>
+                        <div class="col-lg-3">
                             <input type="text" name="email" id="email" class="form-control">
                         </div>
-                        <label class="control-label col-lg-1 text-left">Powtórz e-mail<span
+                        <label class="control-label col-lg-2 text-right">Powtórz e-mail<span
                                 class="text-danger">*</span></label>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <input type="text" name="email_confirmation" id="email_confirmation" class="form-control">
                         </div>
                     </div>
 
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Adres strony internetowej</label>
-                        <div class="col-lg-9">
+                        <label class="control-label col-lg-2">Adres strony internetowej</label>
+                        <div class="col-lg-8">
                             <input type="text" name="website" id="website" class="form-control" placeholder=""
                                    data-msg-url="Wprowadź poprawny adres">
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
-        <div class="panel panel-flat col-lg-12">
-            <div class="panel-heading">
-                <h5 class="panel-title text-info">BIOGRAFIA</h5>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title text-info">BIOGRAFIA</h5>
             </div>
-
-            <div class="panel-body">
+            <div class="card-body">
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-1">Biografia<span class="text-danger">*</span><span
+                        <label class="control-label col-lg-2">Biografia<span class="text-danger">*</span><span
                                 class="text-size-small"><br><br><em>Maksymalnie 5000 znaków</em></span></label>
-                        <div class="col-lg-9">
+                        <div class="col-lg-8">
                             <textarea class="form-control" rows="5" type="text" name="biography"
                                       id="biography" value="" maxlength="5000"></textarea>
                         </div>
@@ -695,11 +723,84 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-flat col-lg-12">
-            <div class="panel-heading">
-                <h5 class="panel-title text-info">PRYWATNOŚĆ</h5>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title text-info">TWOJA PRACA</h5>
             </div>
-            <div class="panel-body">
+
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-8 text-muted"><p>Prześlij kopię twojej pracy.</p></div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <label class="control-label col-lg-2">Twoja praca<span class="text-danger">*</span></label>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="work_copy"
+                                       aria-describedby="fileHelp">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <label class="control-label col-lg-2">Kategoria<span class="text-danger">*</span></label>
+                        <div class="col-lg-8">
+                            <select class="form-control" id="category"
+                                    name="category" required="required">
+                                <option value="0" selected hidden>Wybierz kategorię...</option>
+                                <option value="1">Malarstwo</option>
+                                <option value="2">Sztuka fotografii</option>
+                                <option value="3">Rzeźba i instalacja</option>
+                                <option value="4">Sztuka wideo i filmy krótkometrażowe</option>
+                                <option value="5">Występy</option>
+                                <option value="6">Sztuka wirtualna</option>
+                                <option value="7">Grafika cyfrowa</option>
+                                <option value="8">Sztuka środowiskowa</option>
+                                <option value="9">Urban art</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title text-info">POTWIERDZENIE PŁATNOŚCI</h5>
+            </div>
+
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-8 text-muted"><p>Prześlij kopię potwierdzenia płatnośći</p></div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <label class="control-label col-lg-2">Kopia potwierdzenia płatności<span
+                                class="text-danger">*</span></label>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="payment_confirmation"
+                                       aria-describedby="fileHelp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title text-info">PRYWATNOŚĆ</h5>
+            </div>
+            <div class="card-body">
                 <div class="row">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-10 text-left">
@@ -707,8 +808,8 @@
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input" name="rules" id="rules">
                                 Oświadczam że zapoznałem się i akceptuję wszystkie warunki regulaminu konkursu Arte
-                                Laguna Prize Regulamin dostępny tutaj:<a href="https://www.artelagunaprize.com"
-                                                                         target="_blank">www.artelagunaprize.com</a>
+                                Laguna Prize Regulamin dostępny tutaj: <a href="https://www.artelagunaprize.com"
+                                                                          target="_blank">www.artelagunaprize.com</a>
                             </label>
                             <div style="width:100%;clear: both; height: 5px;"></div>
                         </div>
@@ -723,8 +824,10 @@
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input" name="privacy" id="privacy">
-                                Upoważniam Stowarzyszenie MoCa do wykorzystywania moich informacji na podstawie włoskich
-                                przepisów o ochronie prywatności 675/96 i D.Lgs. 196/2003, również w celu włączenia do
+                                Upoważniam Stowarzyszenie MoCa do wykorzystywania moich informacji na podstawie
+                                włoskich
+                                przepisów o ochronie prywatności 675/96 i D.Lgs. 196/2003, również w celu włączenia
+                                do
                                 baz danych prowadzonych przez Organizację.</label>
                             <div style="width:100%;clear: both; height: 5px;"></div>
                         </div>
@@ -734,44 +837,22 @@
                 </div>
             </div>
         </div>
+
         <div class="panel panel-flat col-lg-12">
-
-
             <div class="panel-body">
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
                         <div class="text-center col-lg-10" style="margin-left:0;margin-right:0px;padding-right:0;">
                             <div class="form-group"></div>
-                            <button type="submit" class="btn btn-info">DALEJ</button>
-
-
+                            <button type="submit" class="btn btn-lg btn-info">DALEJ</button>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
                 </div>
-
             </div>
         </div>
     </form>
-    <div class="panel panel-flat col-lg-12">
-        <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-5 text-right" style="margin-left:0;margin-right:0px;padding-right:0;">
-                <form method="GET" action="/id_confirm">
-                    <button type="submit" class="btn btn-info">Dalej(poniżej 25 lat)</button>
-                </form>
-            </div>
-            <div class="col-lg-5 text-left" style="margin-left:0;margin-right:0px;padding-right:0;">
-                <form method="GET" action="/payment_confirmation">
-                    <button type="submit" class="btn btn-info">Dalej(powyżej 25 lat)</button>
-                </form>
-            </div>
-            <div class="col-lg-1"></div>
-        </div>
-    </div>
 </div>
-
-
 </body>
 </html>
