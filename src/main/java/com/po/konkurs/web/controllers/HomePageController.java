@@ -50,4 +50,8 @@ public class HomePageController {
         return "pu2_show_review";
     }
 
+    @RequestMapping(value = {"/pu3"}, method = RequestMethod.GET)
+    public String pu3_editions() {
+        return "pu3_edition_managing";
+    }
 }

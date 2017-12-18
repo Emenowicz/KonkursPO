@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
     <script src="/jquery/jquery-3.2.1.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.js"></script>
 
 </head>
 
@@ -47,7 +47,7 @@
     <div class="btn-group btn-group-justified">
         <a href="/pu1" class="btn btn-info">PU1</a>
         <a href="/pu2" class="btn btn-info">PU2</a>
-        <a href="#" class="btn btn-info">PU3</a>
+        <a href="/pu3" class="btn btn-info">PU3</a>
     </div>
 </div>
 </body>
