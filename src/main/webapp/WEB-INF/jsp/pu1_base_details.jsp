@@ -15,14 +15,13 @@
     <script src="/jquery/jquery-3.2.1.min.js"></script>
     <script src="/bootstrap/js/bootstrap.bundle.js"></script>
 
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <%--DATEPICKER--%>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <script src="http://code.gijgo.com/1.6.1/js/gijgo.js" type="text/javascript"></script>
-    <link href="http://code.gijgo.com/1.6.1/css/gijgo.css" rel="stylesheet" type="text/css"/>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0-RC3/css/bootstrap-datepicker.css">
     <title>Submit for competition</title>
 </head>
 <body>
@@ -334,9 +333,9 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Data urodzenia<span class="text-danger">*</span></label>
                         <div class="col-lg-8">
-                            <div class="input-group"> <!-- Date input -->
+                            <div class="input-group "> <!-- Date input -->
                                 <input class="form-control" id="datepicker" name="dateofbirth" placeholder="MM/DD/YYY"
-                                       type="text"/>
+                                       type="text" onchange="check_for_below_25()"/>
                             </div>
                         </div>
                         <script>
@@ -344,13 +343,40 @@
                                 uiLibrary: 'bootstrap4',
                                 iconsLibrary: 'fontawesome'
                             });
+
+                            function diff_years(dt2, dt1) {
+                                console.log(dt2 + " - " + dt1);
+                                var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+                                diff /= (60 * 60 * 24);
+                                return Math.abs(Math.round(diff / 365.25));
+                            }
+
+                            function stringToDate(str) {
+                                var date = str.split("/"), m = date[0], d = date[1], y = date[2], temp = [];
+                                temp.push(y, m, d);
+                                return (new Date(temp.join("-")));
+                            }
+
+                            function check_for_below_25() {
+                                var d = new Date();
+                                var dp = document.getElementById("datepicker").value;
+                                dp = stringToDate(dp);
+                                console.log(dp);
+                                var x = diff_years(d, dp);
+                                if (x < 25) {
+                                    document.getElementsByName("id_panel")[0].className = "card";
+                                }
+                                else {
+                                    document.getElementsByName("id_panel")[0].className = "card d-none";
+                                }
+                            }
                         </script>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card d-none">
+        <div class="card d-none" name="id_panel" id="id_panel">
             <div class="card-header">
                 <h5 class="card-title text-info">DOWÓD OSOBISTY</h5>
             </div>
@@ -651,12 +677,12 @@
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Miasto<span class="text-danger">*</span></label>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <input type="text" name="city" id="city" class="form-control" required="required">
                         </div>
-                        <label class="control-label col-lg-2 text-right">Kod pocztowy<span
+                        <label class="control-label col-lg-2">Kod pocztowy<span
                                 class="text-danger">*</span></label>
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <input type="text" name="postcode" id="postcode" class="form-control" required="required">
                         </div>
                     </div>
@@ -675,7 +701,7 @@
                         <div class="col-lg-3">
                             <input type="text" name="telephone" id="telephone" class="form-control">
                         </div>
-                        <label class="control-label col-lg-2 text-right">Nr komórkowy</label>
+                        <label class="control-label col-lg-2 ">Nr komórkowy</label>
                         <div class="col-lg-3">
                             <input type="text" name="mobile" id="mobile" class="form-control" placeholder="">
                         </div>
@@ -687,7 +713,7 @@
                         <div class="col-lg-3">
                             <input type="text" name="email" id="email" class="form-control">
                         </div>
-                        <label class="control-label col-lg-2 text-right">Powtórz e-mail<span
+                        <label class="control-label col-lg-2">Powtórz e-mail<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-3">
                             <input type="text" name="email_confirmation" id="email_confirmation" class="form-control">
