@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
     <script src="/jquery/jquery-3.2.1.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.js"></script>
 </head>
 <body>
 <div class="jumbotron-fluid">
