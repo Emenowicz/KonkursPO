@@ -48,19 +48,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12"><img class="img-fluid d-block mx-auto"
-                                        src="https://beks.pl/wp-content/uploads/2015/05/beks_str_glowna_obraz_3.jpg" width="500"
+                                        src="https://beks.pl/wp-content/uploads/2015/05/beks_str_glowna_obraz_3.jpg"
+                                        width="500"
                                         height="500"></div>
         </div>
     </div>
 </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12"><h3 class="">Ocena: 7</h3></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12"><h3 class="">Ocena: 7</h3></div>
     </div>
 </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12"><h3 class="">Komentarz:</h3></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12"><h3 class="">Komentarz:</h3></div>
     </div>
 </div>
 <div class="py-5">
@@ -70,5 +71,7 @@
         </div>
     </div>
 </div>
+
+
 </body>
 </html>

@@ -20,7 +20,22 @@
 <body>
 <div class="jumbotron-fluid">
     <div class="container col-lg-10">
-        <h1 class="display-3 text-info">ArteART Prize Laguna 17.18</h1>
+        <div class="row">
+            <div class="col-lg-10">
+                <h1 class="display-3 text-info">ArteART Prize Laguna 17.18</h1>
+            </div>
+            <div class="col-lg-2">
+                <div class="media" style="padding-top: 30px">
+                    <img class="d-block img"
+                         src="http://fuuse.net/wp-content/uploads/2016/02/avatar-placeholder.png"
+                         style="max-width: 64px"/>
+                    <div class="media-body">
+                        <h6 class="mt-0 ml-0">Imię Nazwisko</h6>
+                        Kategoria
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="container">
@@ -209,7 +224,7 @@
                     <div class="col-lg-1"></div>
                     <div class="text-center col-lg-10" style="margin-left:0;margin-right:0px;padding-right:0;">
                         <div class="form-group"></div>
-                        <a href="/login" class="btn btn-info">Powrót do strony głównej</a>
+                        <a href="/login" class="btn btn-info">Wyloguj</a>
                         <a href="#" class="btn btn-info">Zapisz</a>
                     </div>
                     <div class="col-lg-1"></div>
