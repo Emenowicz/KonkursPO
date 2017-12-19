@@ -95,7 +95,7 @@
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Data zakończenia 1 etapu<span
+                        <label class="control-label col-lg-2">Data zakończenia zgłaszania prac<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
@@ -113,7 +113,7 @@
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Data zakończenia 2 etapu<span
+                        <label class="control-label col-lg-2">Data zakończenia 1 etapu<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
@@ -131,7 +131,7 @@
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Data zakończenia 3 etapu<span
+                        <label class="control-label col-lg-2">Data wystawy prac<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
@@ -152,6 +152,72 @@
                         <div class="col-lg-10">
                             <div class="card">
                                 <div class="card-header">
+                                    <h5 class="card-title">Kategorie</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10">
+                                        <div class="card-body">
+                                            <div class="list-group">
+                                                <a href="#categoriesModal"
+                                                   class="list-group-item list-group-item-action flex-column align-items-start"
+                                                   data-toggle="modal">
+                                                    <div class="d-flex w-100 justify-content-between">
+                                                        <h5 class="mb-1">Kategoria 1</h5>
+                                                        <small>Kategoria 1</small>
+                                                    </div>
+                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus.
+                                                        Maecenas
+                                                        sed
+                                                        diam eget
+                                                        risus varius blandit.</p>
+                                                    <small>Donec id elit non mi porta.</small>
+                                                </a>
+                                                <a href="#categoriesModal"
+                                                   class="list-group-item list-group-item-action flex-column align-items-start"
+                                                   data-toggle="modal">
+                                                    <div class="d-flex w-100 justify-content-between">
+                                                        <h5 class="mb-1">Kategoria 2</h5>
+                                                        <small class="text-muted">Kategoria 2</small>
+                                                    </div>
+                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus.
+                                                        Maecenas
+                                                        sed
+                                                        diam eget
+                                                        risus varius blandit.</p>
+                                                    <small class="text-muted">Donec id elit non mi porta.</small>
+                                                </a>
+                                                <a href="#categoriesModal"
+                                                   class="list-group-item list-group-item-action flex-column align-items-start"
+                                                   data-toggle="modal">
+                                                    <div class="d-flex w-100 justify-content-between">
+                                                        <h5 class="mb-1">Kategoria 3</h5>
+                                                        <small class="text-muted">Kategoria 3</small>
+                                                    </div>
+                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus.
+                                                        Maecenas
+                                                        sed
+                                                        diam eget
+                                                        risus varius blandit.</p>
+                                                    <small class="text-muted">Donec id elit non mi porta.</small>
+                                                </a>
+                                                <a href="#categoriesModal"
+                                                   class="list-group-item list-group-item-action flex-column align-items-start"
+                                                   data-toggle="modal">
+                                                    <h4 class="text-center text-muted">DODAJ NOWĄ KATEGORIE</h4>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 20px">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <div class="card">
+                                <div class="card-header">
                                     <h5 class="card-title">Nagrody</h5>
                                 </div>
                                 <div class="row">
@@ -159,7 +225,7 @@
                                     <div class="col-md-10">
                                         <div class="card-body">
                                             <div class="list-group">
-                                                <a href="#myModal"
+                                                <a href="#prizesModal"
                                                    class="list-group-item list-group-item-action flex-column align-items-start"
                                                    data-toggle="modal">
                                                     <div class="d-flex w-100 justify-content-between">
@@ -173,7 +239,7 @@
                                                         risus varius blandit.</p>
                                                     <small>Donec id elit non mi porta.</small>
                                                 </a>
-                                                <a href="#myModal"
+                                                <a href="#prizesModal"
                                                    class="list-group-item list-group-item-action flex-column align-items-start"
                                                    data-toggle="modal">
                                                     <div class="d-flex w-100 justify-content-between">
@@ -187,7 +253,7 @@
                                                         risus varius blandit.</p>
                                                     <small class="text-muted">Donec id elit non mi porta.</small>
                                                 </a>
-                                                <a href="#myModal"
+                                                <a href="#prizesModal"
                                                    class="list-group-item list-group-item-action flex-column align-items-start"
                                                    data-toggle="modal">
                                                     <div class="d-flex w-100 justify-content-between">
@@ -201,7 +267,7 @@
                                                         risus varius blandit.</p>
                                                     <small class="text-muted">Donec id elit non mi porta.</small>
                                                 </a>
-                                                <a href="#myModal"
+                                                <a href="#prizesModal"
                                                    class="list-group-item list-group-item-action flex-column align-items-start"
                                                    data-toggle="modal">
                                                     <h4 class="text-center text-muted">DODAJ NOWĄ NAGRODĘ</h4>
@@ -235,11 +301,51 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="categoriesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">EDYCJA NAGRODY</h5>
+                <h5 class="modal-title" id="exampleModalLabel">EDYCJA KATEGORII</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col-lg-1"></div>
+                        <label class="control-label col-lg-2">Nazwa Kategorii<span class="text-danger">*</span></label>
+                        <div class="col-lg-8">
+                            <input type="text" name="title" id="title" class="form-control" required="required"
+                                   placeholder="" data-msg-required="This field is required" aria-required="true">
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col-lg-1"></div>
+                        <label class="control-label col-lg-2">Opis</label>
+                        <div class="col-lg-8">
+                            <textarea name="category_description" id="category_description" rows="6"
+                                      class="form-control"
+                                      placeholder=""></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-info">Zapisz kategorię</button>
+                    <button type="button" class="btn btn-warning">Usuń kategorię</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="prizesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">EDYCJA NAGRODY</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -250,7 +356,17 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Tytuł nagrody<span class="text-danger">*</span></label>
                         <div class="col-lg-8">
-                            <input type="text" name="title" id="title" class="form-control" required="required"
+                            <input type="text" name="prize_title" id="prize_title" class="form-control"
+                                   required="required"
+                                   placeholder="" data-msg-required="This field is required" aria-required="true">
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col-lg-1"></div>
+                        <label class="control-label col-lg-2">Zawartość nagrody<span
+                                class="text-danger">*</span></label>
+                        <div class="col-lg-8">
+                            <input type="text" name="value" id="value" class="form-control" required="required"
                                    placeholder="" data-msg-required="This field is required" aria-required="true">
                         </div>
                     </div>
@@ -258,22 +374,27 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Kategoria<span class="text-danger">*</span></label>
                         <div class="col-lg-8">
-                            <input type="text" name="category" id="category" class="form-control" required="required"
-                                   placeholder="" data-msg-required="This field is required" aria-required="true">
+                            <select class="form-control" id="category"
+                                    name="category" required="required">
+                                <option value="0" selected hidden>Wybierz kategorię...</option>
+                                <option value="1">Malarstwo</option>
+                                <option value="2">Sztuka fotografii</option>
+                                <option value="3">Rzeźba i instalacja</option>
+                                <option value="4">Sztuka wideo i filmy krótkometrażowe</option>
+                                <option value="5">Występy</option>
+                                <option value="6">Sztuka wirtualna</option>
+                                <option value="7">Grafika cyfrowa</option>
+                                <option value="8">Sztuka środowiskowa</option>
+                                <option value="9">Urban art</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Opis</label>
                         <div class="col-lg-8">
-                            <input type="text" name="description" id="description" class="form-control" placeholder="">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-top: 20px;">
-                        <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Komentarz</label>
-                        <div class="col-lg-8">
-                            <input type="text" name="comment" id="comment" class="form-control" placeholder="">
+                            <textarea name="description" id="description" rows="6" class="form-control"
+                                      placeholder=""></textarea>
                         </div>
                     </div>
                 </div>
@@ -285,5 +406,6 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
