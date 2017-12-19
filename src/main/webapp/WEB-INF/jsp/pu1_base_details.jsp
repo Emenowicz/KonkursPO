@@ -871,8 +871,8 @@
                         <div class="col-lg-1"></div>
                         <div class="text-center col-lg-10" style="margin-left:0;margin-right:0px;padding-right:0;">
                             <div class="form-group"></div>
-                            <button type="submit" class="btn btn-info">DALEJ</button>
-                            <a href="/login" class="btn btn-info">Powrót do strony głównej</a>
+                            <button type="submit" class="btn btn-info">Zgłoś pracę</button>
+                            <a href="/login" class="btn btn-info">Anuluj</a>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
