@@ -33,12 +33,16 @@
                     <span>${message}</span>
                     <input name="username" type="text" class="form-control" placeholder="Username"
                            autofocus="true"/>
+                    <br/>
                     <input name="password" type="password" class="form-control" placeholder="Password"/>
                     <span>${error}</span>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
+                    <br/>
                     <button class="btn btn-lg btn-info btn-block" type="submit">Zaloguj się</button>
+                    <br/>
                     <h4 class="text-center"><a href="/registration" class="text-info">Utwórz konto</a></h4>
+                    <br/>
+                    <h4 class="text-center"><a href="/pu1" class="text-info">Zgłoś Pracę</a></h4>
                 </div>
             </div>
         </div>
