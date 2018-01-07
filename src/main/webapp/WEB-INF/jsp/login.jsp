@@ -28,6 +28,9 @@
             <div class="card-header">
                 <h2 class="card-title">Zaloguj się</h2>
             </div>
+            <c:forEach>
+
+            </c:forEach>
             <div class="card-body">
                 <div class="form-group ${error != null ? 'has-error' : ''}">
                     <span>${message}</span>
