@@ -19,24 +19,4 @@ public class HomePageController {
 
         return "login";
     }
-
-    @RequestMapping(value = {"/pu1"}, method = RequestMethod.GET)
-    public String pu1() {
-        return "pu1_base_details";
-    }
-
-    @RequestMapping(value = {"/complete"}, method = RequestMethod.GET)
-    public String pu1_complete() {
-        return "pu1_complete";
-    }
-
-    @RequestMapping(value = {"/pu2"}, method = RequestMethod.GET)
-    public String pu2() {
-        return "pu2_artwork_overview";
-    }
-
-    @RequestMapping(value = {"/pu3"}, method = RequestMethod.GET)
-    public String pu3_editions() {
-        return "pu3_edition_managing";
-    }
 }

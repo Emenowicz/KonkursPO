@@ -1,11 +1,13 @@
 package com.po.konkurs.service;
 
-import com.po.konkurs.model.User;
+import com.po.konkurs.model.UserModel;
 
 import java.util.List;
 
 public interface UserService {
-    public User saveOrUpdate(User user);
-    public List<User> getAllUsers();
-    public User getUserByEmail(String email);
+    public UserModel saveOrUpdate(UserModel userModel);
+
+    public List<UserModel> getAllUsers();
+
+    public UserModel getUserByEmail(String email);
 }

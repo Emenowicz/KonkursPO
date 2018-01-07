@@ -1,6 +1,6 @@
 package com.po.konkurs.service.impl;
 
-import com.po.konkurs.model.User;
+import com.po.konkurs.model.UserModel;
 import com.po.konkurs.repository.UserDao;
 import com.po.konkurs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +21,17 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public User saveOrUpdate(User user) {
-        return userDao.save(user);
+    public UserModel saveOrUpdate(UserModel userModel) {
+        return userDao.save(userModel);
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<UserModel> getAllUsers() {
         return userDao.findAll();
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public UserModel getUserByEmail(String email) {
         return userDao.findOneByEmail(email);
     }
 }
