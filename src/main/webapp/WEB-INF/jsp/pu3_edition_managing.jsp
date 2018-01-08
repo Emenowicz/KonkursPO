@@ -41,8 +41,8 @@
     </div>
 </div>
 <div class="container">
-    <div class="card">
-        <form method="get">
+    <form:form method="post" action="saveEdition" modelAttribute="edition">
+        <div class="card">
             <div class="card-header">
                 <h5 class="card-title text-info">EDYCJE</h5>
                 <h6 class="card-subtitle">
@@ -59,21 +59,25 @@
                 </h6>
             </div>
             <div class="card-body">
+
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Numer edycji</label>
                         <div class="col-lg-8">
-                            <input type="text" name="pseudonim" id="pseudonim" class="form-control" placeholder="">
+                            <form:input path="number" type="number" name="number" id="number" class="form-control"
+                                        placeholder=""/>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Data rozpoczęcia edycji<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-2">Data rozpoczęcia edycji<span
+                                class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
-                                <input class="form-control" id="start_date" name="start_date" placeholder="MM/DD/YYY"
-                                       type="text"/>
+                                <form:input path="startDate" class="form-control" id="start_date" name="start_date"
+                                            placeholder="MM/DD/YYY"
+                                            type="text"/>
                             </div>
                         </div>
                         <script>
@@ -85,11 +89,13 @@
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Data zakończenia edycji<span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-2">Data zakończenia edycji<span
+                                class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
-                                <input class="form-control" id="end_date" name="end_date" placeholder="MM/DD/YYY"
-                                       type="text"/>
+                                <form:input path="endDate" class="form-control" id="end_date" name="end_date"
+                                            placeholder="MM/DD/YYY"
+                                            type="text"/>
                             </div>
                         </div>
                         <script>
@@ -105,13 +111,14 @@
                                 class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
-                                <input class="form-control" id="etap1_date" name="etap1_date"
-                                       placeholder="MM/DD/YYY"
-                                       type="text"/>
+                                <form:input path="signingArtworksEndDate" class="form-control" id="signing_date"
+                                            name="signing_date"
+                                            placeholder="MM/DD/YYY"
+                                            type="text"/>
                             </div>
                         </div>
                         <script>
-                            $('#etap1_date').datepicker({
+                            $('#signing_date').datepicker({
                                 uiLibrary: 'bootstrap4',
                                 iconsLibrary: 'fontawesome'
                             });
@@ -123,13 +130,14 @@
                                 class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
-                                <input class="form-control" id="etap2_date" name="etap2_date"
-                                       placeholder="MM/DD/YYY"
-                                       type="text"/>
+                                <form:input path="firstStepEndDate" class="form-control" id="step1Enddate"
+                                            name="step1End_date"
+                                            placeholder="MM/DD/YYY"
+                                            type="text"/>
                             </div>
                         </div>
                         <script>
-                            $('#etap2_date').datepicker({
+                            $('#step1Enddate').datepicker({
                                 uiLibrary: 'bootstrap4',
                                 iconsLibrary: 'fontawesome'
                             });
@@ -141,13 +149,14 @@
                                 class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
-                                <input class="form-control" id="etap3_date" name="etap3_date"
-                                       placeholder="MM/DD/YYY"
-                                       type="text"/>
+                                <form:input path="exhibitionDate" class="form-control" id="exhibitionDate"
+                                            name="exhibitionDate"
+                                            placeholder="MM/DD/YYY"
+                                            type="text"/>
                             </div>
                         </div>
                         <script>
-                            $('#etap3_date').datepicker({
+                            $('#exhibitionDate').datepicker({
                                 uiLibrary: 'bootstrap4',
                                 iconsLibrary: 'fontawesome'
                             });
@@ -169,7 +178,7 @@
                                                     <c:forEach items="${categories}" var="category">
                                                         <a href="#categoriesModal"
                                                            class="list-group-item list-group-item-action flex-column align-items-start"
-                                                           data-toggle="modal">
+                                                           data-toggle="modal" data-id="${category.id}">
                                                             <div class="d-flex w-100 justify-content-between">
                                                                 <h5 class="mb-1">${category.name}</h5>
                                                             </div>
@@ -208,7 +217,8 @@
                                                         <h5 class="mb-1">Nagroda 2</h5>
                                                         <small class="text-muted">Kategoria 2</small>
                                                     </div>
-                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus.
+                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget
+                                                        metus.
                                                         Maecenas
                                                         sed
                                                         diam eget
@@ -222,7 +232,8 @@
                                                         <h5 class="mb-1">Nagroda 3</h5>
                                                         <small class="text-muted">Kategoria 3</small>
                                                     </div>
-                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus.
+                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget
+                                                        metus.
                                                         Maecenas
                                                         sed
                                                         diam eget
@@ -242,24 +253,25 @@
                         </div>
                     </div>
                 </div>
+
             </div>
-        </form>
-    </div>
-    <div class="panel panel-flat col-lg-12">
-        <div class="panel-body">
-            <div class="form-group">
-                <div class="row" style="padding-top: 20px;">
-                    <div class="col-lg-1"></div>
-                    <div class="text-center col-lg-10" style="margin-left:0;margin-right:0px;padding-right:0;">
-                        <div class="form-group"></div>
-                        <a href="/login" class="btn btn-info">Wyloguj</a>
-                        <a href="#" class="btn btn-info">Zapisz</a>
+        </div>
+        <div class="panel panel-flat col-lg-12">
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col-lg-1"></div>
+                        <div class="text-center col-lg-10" style="margin-left:0;margin-right:0px;padding-right:0;">
+                            <div class="form-group"></div>
+                            <a href="/login" class="btn btn-info">Wyloguj</a>
+                            <button type="submit" class="btn btn-info">Zapisz</button>
+                        </div>
+                        <div class="col-lg-1"></div>
                     </div>
-                    <div class="col-lg-1"></div>
                 </div>
             </div>
         </div>
-    </div>
+    </form:form>
 </div>
 
 <!-- Modal -->

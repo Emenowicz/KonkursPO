@@ -1,6 +1,7 @@
 package com.po.konkurs.web.controllers;
 
 import com.po.konkurs.model.CategoryModel;
+import com.po.konkurs.model.EditionModel;
 import com.po.konkurs.service.CategoryService;
 import com.po.konkurs.service.EditionService;
 import org.springframework.stereotype.Controller;
@@ -23,12 +24,19 @@ public class EditionManagementController {
         editionService.setEditionsDataInModel(model);
         categoryService.setCategoriesDataInModel(model);
         model.addAttribute("category", new CategoryModel());
+        model.addAttribute("edition", new EditionModel());
         return "pu3_edition_managing";
     }
 
     @RequestMapping(value = {"/saveCategory"}, method = RequestMethod.POST)
     public String saveOrUpdateCategory(Model model, @ModelAttribute("category") CategoryModel category) {
         categoryService.saveOrUpdate(category);
+        return "redirect:/pu3";
+    }
+
+    @RequestMapping(value = {"/saveEdition"}, method = RequestMethod.POST)
+    public String saveOrUpdateEdition(Model model, @ModelAttribute("edition") EditionModel edition) {
+        editionService.saveOrUpdate(edition);
         return "redirect:/pu3";
     }
 
