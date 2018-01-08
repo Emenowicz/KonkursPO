@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -48,7 +48,7 @@
                     <label for="edition_choice">Wybierz edycję</label>
                     <select class="form-control" id="edition_choice">
                         <option value="new">New edition</option>
-                        <c:if test="${editions.size>0}">
+                        <c:if test="${editions.size()>0}">
                             <c:forEach items="${editions}" var="edition">
                                 <option value="${edition.number}"><c:out value="${edition.number}"></c:out></option>
                             </c:forEach>
