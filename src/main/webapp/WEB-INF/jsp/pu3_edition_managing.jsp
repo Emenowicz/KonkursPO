@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -47,7 +48,7 @@
                 <h6 class="card-subtitle">
                     <label for="edition_choice">Wybierz edycję</label>
                     <select class="form-control" id="edition_choice">
-                        <option value="new">New edition</option>
+                        <option value="new">Nowa edycja</option>
                         <c:if test="${editions.size()>0}">
                             <c:forEach items="${editions}" var="edition">
                                 <option value="${edition.number}"><c:out value="${edition.number}"></c:out></option>
@@ -164,48 +165,18 @@
                                     <div class="col-md-10">
                                         <div class="card-body">
                                             <div class="list-group">
-                                                <a href="#categoriesModal"
-                                                   class="list-group-item list-group-item-action flex-column align-items-start"
-                                                   data-toggle="modal">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1">Kategoria 1</h5>
-                                                        <small>Kategoria 1</small>
-                                                    </div>
-                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus.
-                                                        Maecenas
-                                                        sed
-                                                        diam eget
-                                                        risus varius blandit.</p>
-                                                    <small>Donec id elit non mi porta.</small>
-                                                </a>
-                                                <a href="#categoriesModal"
-                                                   class="list-group-item list-group-item-action flex-column align-items-start"
-                                                   data-toggle="modal">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1">Kategoria 2</h5>
-                                                        <small class="text-muted">Kategoria 2</small>
-                                                    </div>
-                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus.
-                                                        Maecenas
-                                                        sed
-                                                        diam eget
-                                                        risus varius blandit.</p>
-                                                    <small class="text-muted">Donec id elit non mi porta.</small>
-                                                </a>
-                                                <a href="#categoriesModal"
-                                                   class="list-group-item list-group-item-action flex-column align-items-start"
-                                                   data-toggle="modal">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1">Kategoria 3</h5>
-                                                        <small class="text-muted">Kategoria 3</small>
-                                                    </div>
-                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus.
-                                                        Maecenas
-                                                        sed
-                                                        diam eget
-                                                        risus varius blandit.</p>
-                                                    <small class="text-muted">Donec id elit non mi porta.</small>
-                                                </a>
+                                                <c:if test="${categories.size()>0}">
+                                                    <c:forEach items="${categories}" var="category">
+                                                        <a href="#categoriesModal"
+                                                           class="list-group-item list-group-item-action flex-column align-items-start"
+                                                           data-toggle="modal">
+                                                            <div class="d-flex w-100 justify-content-between">
+                                                                <h5 class="mb-1">${category.name}</h5>
+                                                            </div>
+                                                            <p class="mb-1">${category.description}</p>
+                                                        </a>
+                                                    </c:forEach>
+                                                </c:if>
                                                 <a href="#categoriesModal"
                                                    class="list-group-item list-group-item-action flex-column align-items-start"
                                                    data-toggle="modal">
@@ -230,20 +201,6 @@
                                     <div class="col-md-10">
                                         <div class="card-body">
                                             <div class="list-group">
-                                                <a href="#prizesModal"
-                                                   class="list-group-item list-group-item-action flex-column align-items-start"
-                                                   data-toggle="modal">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1">Nagroda 1</h5>
-                                                        <small>Kategoria 1</small>
-                                                    </div>
-                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus.
-                                                        Maecenas
-                                                        sed
-                                                        diam eget
-                                                        risus varius blandit.</p>
-                                                    <small>Donec id elit non mi porta.</small>
-                                                </a>
                                                 <a href="#prizesModal"
                                                    class="list-group-item list-group-item-action flex-column align-items-start"
                                                    data-toggle="modal">
@@ -317,30 +274,36 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <div class="row" style="padding-top: 20px;">
-                        <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Nazwa Kategorii<span class="text-danger">*</span></label>
-                        <div class="col-lg-8">
-                            <input type="text" name="title" id="title" class="form-control" required="required"
-                                   placeholder="" data-msg-required="This field is required" aria-required="true">
+                <form:form method="post" action="saveCategory" modelAttribute="category">
+                    <div class="form-group">
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Nazwa Kategorii<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-lg-8">
+                                <form:input path="name" type="text" name="name" id="name" class="form-control"
+                                            required="required"
+                                            placeholder="" data-msg-required="To pole jest wymagane"
+                                            aria-required="true"></form:input>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Opis</label>
+                            <div class="col-lg-8">
+                                <form:textarea path="description" name="category_description" id="category_description"
+                                               rows="6"
+                                               class="form-control"
+                                               placeholder=""></form:textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="row" style="padding-top: 20px;">
-                        <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Opis</label>
-                        <div class="col-lg-8">
-                            <textarea name="category_description" id="category_description" rows="6"
-                                      class="form-control"
-                                      placeholder=""></textarea>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <button type="submit" class="btn btn-info">Zapisz kategorię</button>
+                        <button type="button" class="btn btn-warning">Usuń kategorię</button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                    <button type="button" class="btn btn-info">Zapisz kategorię</button>
-                    <button type="button" class="btn btn-warning">Usuń kategorię</button>
-                </div>
+                </form:form>
             </div>
         </div>
     </div>
