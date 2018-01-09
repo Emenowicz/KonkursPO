@@ -222,7 +222,7 @@
                                                             </a>
                                                         </c:forEach>
                                                     </c:if>
-                                                    <a href="#categoriesModal"
+                                                    <a href="#newCategoryModal"
                                                        class="list-group-item list-group-item-action flex-column align-items-start"
                                                        data-toggle="modal">
                                                         <h4 class="text-center text-muted">DODAJ NOWĄ KATEGORIE</h4>
@@ -314,6 +314,62 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">EDYCJA KATEGORII</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <script>
+                    $('#categoriesModal').on('show.bs.modal', function (e) {
+                        var categoryId = $(e.relatedTarget).attr('data-id');
+                        $('#categoryId').val(categoryId);
+
+                    })
+                </script>
+                <form:form method="post" action="saveCategory" modelAttribute="category">
+                    <div class="form-group">
+
+                        <form:hidden path="id" id="categoryId"/>
+
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Nazwa Kategorii<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-lg-8">
+                                <form:input path="name" type="text" name="name" id="name" class="form-control"
+                                            required="required"
+                                            placeholder="" data-msg-required="To pole jest wymagane"
+                                            aria-required="true"></form:input>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Opis</label>
+                            <div class="col-lg-8">
+                                <form:textarea path="description" name="category_description" id="category_description"
+                                               rows="6"
+                                               class="form-control"
+                                               placeholder=""></form:textarea>
+                            </div>
+                        </div>
+                        <form:hidden path="edition" value="${selectedEdition.number}"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <button type="submit" class="btn btn-info">Zapisz kategorię</button>
+                        <button type="button" class="btn btn-warning">Usuń kategorię</button>
+                    </div>
+                </form:form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="newCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">DODAJ KATEGORIĘ</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
