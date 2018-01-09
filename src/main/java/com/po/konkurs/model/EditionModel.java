@@ -10,21 +10,23 @@ import java.util.Set;
 public class EditionModel implements Serializable {
     @Id
     private int number;
-
-    private Date startDate;
-
-    private Date endDate;
-
     private boolean active;
-
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
+    @Temporal(TemporalType.DATE)
     private Date signingArtworksEndDate;
-
+    @Temporal(TemporalType.DATE)
     private Date firstStepEndDate;
-
+    @Temporal(TemporalType.DATE)
     private Date exhibitionDate;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<ArtworkModel> artworks;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "edition")
+    private Set<CategoryModel> categories;
 
     public Set<ArtworkModel> getArtworks() {
         return artworks;
@@ -88,5 +90,13 @@ public class EditionModel implements Serializable {
 
     public void setExhibitionDate(Date exhibitionDate) {
         this.exhibitionDate = exhibitionDate;
+    }
+
+    public Set<CategoryModel> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<CategoryModel> categories) {
+        this.categories = categories;
     }
 }
