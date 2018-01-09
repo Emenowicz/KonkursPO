@@ -15,8 +15,10 @@
     <%--DATEPICKER--%>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <script src="http://code.gijgo.com/1.6.1/js/gijgo.js" type="text/javascript"></script>
-    <link href="http://code.gijgo.com/1.6.1/css/gijgo.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.7.3/dist/combined/js/gijgo.min.js"
+            type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.7.3/dist/combined/css/gijgo.min.css" rel="stylesheet"
+          type="text/css"/>
 
 </head>
 <body>
@@ -41,32 +43,55 @@
     </div>
 </div>
 <div class="container">
-    <form:form method="post" action="saveEdition" modelAttribute="edition">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title text-info">EDYCJE</h5>
-                <h6 class="card-subtitle">
-                    <label for="edition_choice">Wybierz edycję</label>
-                    <select class="form-control" id="edition_choice">
-                        <option value="new">Nowa edycja</option>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title text-info">EDYCJE</h5>
+            <h6 class="card-subtitle">
+                <label for="edition_choice">Wybierz edycję</label>
+                <form:form action="pu3" method="get">
+                    <select class="form-control" id="edition_choice" name="editionId" onchange="submit()">
+                        <option value="0">Nowa edycja</option>
                         <c:if test="${editions.size()>0}">
                             <c:forEach items="${editions}" var="edition">
                                 <option value="${edition.number}"><c:out value="${edition.number}"></c:out></option>
                             </c:forEach>
                         </c:if>
-
                     </select>
-                </h6>
-            </div>
-            <div class="card-body">
+                    <script>
+                        $(document).ready(function () {
 
+                            $('#edition_choice option[value=${selectedEdition.number}]').prop("selected", true);
+
+                        });
+
+
+                        function submit() {
+                            $(this).submit();
+                        }
+                    </script>
+                </form:form>
+            </h6>
+        </div>
+        <form:form method="post" action="saveEdition" modelAttribute="edition">
+            <div class="card-body">
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Numer edycji</label>
                         <div class="col-lg-8">
-                            <form:input path="number" type="number" name="number" id="number" class="form-control"
-                                        placeholder=""/>
+                            <c:choose>
+                                <c:when test="${selectedEdition.number>0}">
+                                    <c:set var="editionNumber" value="${selectedEdition.number}"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="editionNumber" value="${maxNumber+1}"/>
+                                </c:otherwise>
+                            </c:choose>
+
+                            <form:input path="number" type="number" name="number" id="number"
+                                        class="form-control"
+                                        value="${editionNumber}"
+                                        placeholder="" readonly="true"/>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
@@ -76,14 +101,16 @@
                         <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
                                 <form:input path="startDate" class="form-control" id="start_date" name="start_date"
-                                            placeholder="MM/DD/YYY"
-                                            type="text"/>
+                                            placeholder="YYYY-MM-DD"
+                                            value="${selectedEdition.startDate}"
+                                            type="text" required="true"/>
                             </div>
                         </div>
                         <script>
                             $('#start_date').datepicker({
                                 uiLibrary: 'bootstrap4',
-                                iconsLibrary: 'fontawesome'
+                                iconsLibrary: 'fontawesome',
+                                format: 'yyyy-mm-dd'
                             });
                         </script>
                     </div>
@@ -94,14 +121,16 @@
                         <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
                                 <form:input path="endDate" class="form-control" id="end_date" name="end_date"
-                                            placeholder="MM/DD/YYY"
-                                            type="text"/>
+                                            placeholder="YYYY-MM-DD"
+                                            value="${selectedEdition.endDate}"
+                                            type="text" required="true"/>
                             </div>
                         </div>
                         <script>
                             $('#end_date').datepicker({
                                 uiLibrary: 'bootstrap4',
-                                iconsLibrary: 'fontawesome'
+                                iconsLibrary: 'fontawesome',
+                                format: 'yyyy-mm-dd'
                             });
                         </script>
                     </div>
@@ -113,33 +142,37 @@
                             <div class="input-group"> <!-- Date input -->
                                 <form:input path="signingArtworksEndDate" class="form-control" id="signing_date"
                                             name="signing_date"
-                                            placeholder="MM/DD/YYY"
-                                            type="text"/>
+                                            placeholder="YYYY-MM-DD"
+                                            value="${selectedEdition.signingArtworksEndDate}"
+                                            type="text" required="true"/>
                             </div>
                         </div>
                         <script>
                             $('#signing_date').datepicker({
                                 uiLibrary: 'bootstrap4',
-                                iconsLibrary: 'fontawesome'
+                                iconsLibrary: 'fontawesome',
+                                format: 'yyyy-mm-dd'
                             });
                         </script>
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Data zakończenia 1 etapu<span
+                        <label class="control-label col-lg-2">Data zakończenia pierwszego etapu<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <div class="input-group"> <!-- Date input -->
                                 <form:input path="firstStepEndDate" class="form-control" id="step1Enddate"
                                             name="step1End_date"
-                                            placeholder="MM/DD/YYY"
-                                            type="text"/>
+                                            placeholder="YYYY-MM-DD"
+                                            value="${selectedEdition.firstStepEndDate}"
+                                            type="text" required="true"/>
                             </div>
                         </div>
                         <script>
                             $('#step1Enddate').datepicker({
                                 uiLibrary: 'bootstrap4',
-                                iconsLibrary: 'fontawesome'
+                                iconsLibrary: 'fontawesome',
+                                format: 'yyyy-mm-dd'
                             });
                         </script>
                     </div>
@@ -151,127 +184,127 @@
                             <div class="input-group"> <!-- Date input -->
                                 <form:input path="exhibitionDate" class="form-control" id="exhibitionDate"
                                             name="exhibitionDate"
-                                            placeholder="MM/DD/YYY"
-                                            type="text"/>
+                                            placeholder="YYYY-MM-DD"
+                                            value="${selectedEdition.exhibitionDate}"
+                                            type="text" required="true"/>
                             </div>
                         </div>
                         <script>
                             $('#exhibitionDate').datepicker({
                                 uiLibrary: 'bootstrap4',
-                                iconsLibrary: 'fontawesome'
+                                iconsLibrary: 'fontawesome',
+                                format: 'yyyy-mm-dd'
                             });
                         </script>
                     </div>
-                    <div class="row" style="padding-top: 20px">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-10">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title">Kategorie</h5>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-10">
-                                        <div class="card-body">
-                                            <div class="list-group">
-                                                <c:if test="${categories.size()>0}">
-                                                    <c:forEach items="${categories}" var="category">
-                                                        <a href="#categoriesModal"
-                                                           class="list-group-item list-group-item-action flex-column align-items-start"
-                                                           data-toggle="modal" data-id="${category.id}">
-                                                            <div class="d-flex w-100 justify-content-between">
-                                                                <h5 class="mb-1">${category.name}</h5>
-                                                            </div>
-                                                            <p class="mb-1">${category.description}</p>
-                                                        </a>
-                                                    </c:forEach>
-                                                </c:if>
-                                                <a href="#categoriesModal"
-                                                   class="list-group-item list-group-item-action flex-column align-items-start"
-                                                   data-toggle="modal">
-                                                    <h4 class="text-center text-muted">DODAJ NOWĄ KATEGORIE</h4>
-                                                </a>
+                    <c:if test="${selectedEdition.number>0}">
+                        <div class="row" style="padding-top: 20px">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-10">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title">Kategorie</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10">
+                                            <div class="card-body">
+                                                <div class="list-group">
+                                                    <c:if test="${categories.size()>0}">
+                                                        <c:forEach items="${categories}" var="category">
+                                                            <a href="#categoriesModal"
+                                                               class="list-group-item list-group-item-action flex-column align-items-start"
+                                                               data-toggle="modal" data-id="${category.id}">
+                                                                <div class="d-flex w-100 justify-content-between">
+                                                                    <h5 class="mb-1">${category.name}</h5>
+                                                                </div>
+                                                                <p class="mb-1">${category.description}</p>
+                                                            </a>
+                                                        </c:forEach>
+                                                    </c:if>
+                                                    <a href="#categoriesModal"
+                                                       class="list-group-item list-group-item-action flex-column align-items-start"
+                                                       data-toggle="modal">
+                                                        <h4 class="text-center text-muted">DODAJ NOWĄ KATEGORIE</h4>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row" style="padding-top: 20px">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-10">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title">Nagrody</h5>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-10">
-                                        <div class="card-body">
-                                            <div class="list-group">
-                                                <a href="#prizesModal"
-                                                   class="list-group-item list-group-item-action flex-column align-items-start"
-                                                   data-toggle="modal">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1">Nagroda 2</h5>
-                                                        <small class="text-muted">Kategoria 2</small>
-                                                    </div>
-                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget
-                                                        metus.
-                                                        Maecenas
-                                                        sed
-                                                        diam eget
-                                                        risus varius blandit.</p>
-                                                    <small class="text-muted">Donec id elit non mi porta.</small>
-                                                </a>
-                                                <a href="#prizesModal"
-                                                   class="list-group-item list-group-item-action flex-column align-items-start"
-                                                   data-toggle="modal">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1">Nagroda 3</h5>
-                                                        <small class="text-muted">Kategoria 3</small>
-                                                    </div>
-                                                    <p class="mb-1">Donec id elit non mi porta gravida at eget
-                                                        metus.
-                                                        Maecenas
-                                                        sed
-                                                        diam eget
-                                                        risus varius blandit.</p>
-                                                    <small class="text-muted">Donec id elit non mi porta.</small>
-                                                </a>
-                                                <a href="#prizesModal"
-                                                   class="list-group-item list-group-item-action flex-column align-items-start"
-                                                   data-toggle="modal">
-                                                    <h4 class="text-center text-muted">DODAJ NOWĄ NAGRODĘ</h4>
-                                                </a>
+                        <div class="row" style="padding-top: 20px">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-10">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title">Nagrody</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10">
+                                            <div class="card-body">
+                                                <div class="list-group">
+                                                    <a href="#prizesModal"
+                                                       class="list-group-item list-group-item-action flex-column align-items-start"
+                                                       data-toggle="modal">
+                                                        <div class="d-flex w-100 justify-content-between">
+                                                            <h5 class="mb-1">Nagroda 2</h5>
+                                                            <small class="text-muted">Kategoria 2</small>
+                                                        </div>
+                                                        <p class="mb-1">Donec id elit non mi porta gravida at eget
+                                                            metus.
+                                                            Maecenas
+                                                            sed
+                                                            diam eget
+                                                            risus varius blandit.</p>
+                                                        <small class="text-muted">Donec id elit non mi porta.</small>
+                                                    </a>
+                                                    <a href="#prizesModal"
+                                                       class="list-group-item list-group-item-action flex-column align-items-start"
+                                                       data-toggle="modal">
+                                                        <div class="d-flex w-100 justify-content-between">
+                                                            <h5 class="mb-1">Nagroda 3</h5>
+                                                            <small class="text-muted">Kategoria 3</small>
+                                                        </div>
+                                                        <p class="mb-1">Donec id elit non mi porta gravida at eget
+                                                            metus.
+                                                            Maecenas
+                                                            sed
+                                                            diam eget
+                                                            risus varius blandit.</p>
+                                                        <small class="text-muted">Donec id elit non mi porta.</small>
+                                                    </a>
+                                                    <a href="#prizesModal"
+                                                       class="list-group-item list-group-item-action flex-column align-items-start"
+                                                       data-toggle="modal">
+                                                        <h4 class="text-center text-muted">DODAJ NOWĄ NAGRODĘ</h4>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </c:if>
                 </div>
 
             </div>
-        </div>
-        <div class="panel panel-flat col-lg-12">
-            <div class="panel-body">
-                <div class="form-group">
-                    <div class="row" style="padding-top: 20px;">
-                        <div class="col-lg-1"></div>
-                        <div class="text-center col-lg-10" style="margin-left:0;margin-right:0px;padding-right:0;">
-                            <div class="form-group"></div>
-                            <a href="/login" class="btn btn-info">Wyloguj</a>
-                            <button type="submit" class="btn btn-info">Zapisz</button>
-                        </div>
-                        <div class="col-lg-1"></div>
+            <div class="form-group">
+                <div class="row" style="padding-top: 20px;">
+                    <div class="col-lg-1"></div>
+                    <div class="text-center col-lg-10" style="margin-left:0;margin-right:0px;padding-right:0;">
+                        <div class="form-group"></div>
+                        <a href="/login" class="btn btn-info">Wyloguj</a>
+                        <button type="submit" class="btn btn-info">Zapisz</button>
                     </div>
+                    <div class="col-lg-1"></div>
                 </div>
             </div>
-        </div>
-    </form:form>
+        </form:form>
+    </div>
 </div>
 
 <!-- Modal -->
@@ -309,6 +342,7 @@
                                                placeholder=""></form:textarea>
                             </div>
                         </div>
+                        <form:hidden path="edition" value="${selectedEdition.number}"/>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>

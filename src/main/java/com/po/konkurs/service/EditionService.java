@@ -10,5 +10,11 @@ public interface EditionService {
 
     List<EditionModel> getEditionsList();
 
+    EditionModel getEditionById(int id);
+
     Model setEditionsDataInModel(Model model);
+
+    Model setSelectedEditionDataInModel(Model model, int id);
+
+    Model setMaximumEditionNumberInModel(Model model);
 }

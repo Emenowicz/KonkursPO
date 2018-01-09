@@ -18,7 +18,8 @@ public class CategoryModel implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<PrizeModel> prizes;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "edition_number")
     private EditionModel edition;
 
     public long getId() {

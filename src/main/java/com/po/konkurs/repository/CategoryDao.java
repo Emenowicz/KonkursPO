@@ -9,4 +9,7 @@ import java.util.List;
 @Transactional
 public interface CategoryDao extends JpaRepository<CategoryModel, Long> {
     List<CategoryModel> findAll();
+
+
+    List<CategoryModel> findCategoryModelsByEditionNumber(int id);
 }

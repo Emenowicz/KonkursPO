@@ -32,6 +32,17 @@ public class DefaultCategoryService implements CategoryService {
         return model;
     }
 
+    @Override
+    public Model setCategoriesDataForSelectedEditionInModel(Model model, int id) {
+        model.addAttribute("categories", getCategoryListForEdition(id));
+        return model;
+    }
+
+    @Override
+    public List<CategoryModel> getCategoryListForEdition(int id) {
+        return categoryDao.findCategoryModelsByEditionNumber(id);
+    }
+
     public CategoryDao getCategoryDao() {
         return categoryDao;
     }

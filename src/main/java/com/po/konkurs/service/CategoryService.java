@@ -11,5 +11,9 @@ public interface CategoryService {
 
     List<CategoryModel> getCategoryList();
 
+    List<CategoryModel> getCategoryListForEdition(int id);
+
     Model setCategoriesDataInModel(Model model);
+
+    Model setCategoriesDataForSelectedEditionInModel(Model model, int id);
 }

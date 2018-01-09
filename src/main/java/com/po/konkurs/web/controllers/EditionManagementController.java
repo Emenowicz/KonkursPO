@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 
@@ -20,11 +21,16 @@ public class EditionManagementController {
     CategoryService categoryService;
 
     @RequestMapping(value = {"/pu3"}, method = RequestMethod.GET)
-    public String pu3_editions(Model model) {
+    public String pu3_editions(Model model, @RequestParam(value = "editionId", defaultValue = "0") int id) {
         editionService.setEditionsDataInModel(model);
-        categoryService.setCategoriesDataInModel(model);
         model.addAttribute("category", new CategoryModel());
         model.addAttribute("edition", new EditionModel());
+        if (id != 0) {
+            editionService.setSelectedEditionDataInModel(model, id);
+            categoryService.setCategoriesDataForSelectedEditionInModel(model, id);
+        } else {
+            editionService.setMaximumEditionNumberInModel(model);
+        }
         return "pu3_edition_managing";
     }
 
