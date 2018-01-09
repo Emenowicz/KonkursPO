@@ -31,6 +31,7 @@ public class PrizeModel implements Serializable {
         this.id = id;
     }
 
+    @Enumerated(EnumType.ORDINAL)
     public PrizeRank getRank() {
         return rank;
     }

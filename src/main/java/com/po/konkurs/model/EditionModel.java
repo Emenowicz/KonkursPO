@@ -1,5 +1,7 @@
 package com.po.konkurs.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,14 +14,19 @@ public class EditionModel implements Serializable {
     private int number;
     private boolean active;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date startDate;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date endDate;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date signingArtworksEndDate;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date firstStepEndDate;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date exhibitionDate;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
