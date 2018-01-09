@@ -214,7 +214,9 @@
                                                         <c:forEach items="${categories}" var="category">
                                                             <a href="#categoriesModal"
                                                                class="list-group-item list-group-item-action flex-column align-items-start"
-                                                               data-toggle="modal" data-id="${category.id}">
+                                                               data-toggle="modal" data-id="${category.id}"
+                                                               data-name="${category.name}"
+                                                               data-description="${category.description}">
                                                                 <div class="d-flex w-100 justify-content-between">
                                                                     <h5 class="mb-1">${category.name}</h5>
                                                                 </div>
@@ -222,7 +224,7 @@
                                                             </a>
                                                         </c:forEach>
                                                     </c:if>
-                                                    <a href="#categoriesModal"
+                                                    <a href="#newCategoryModal"
                                                        class="list-group-item list-group-item-action flex-column align-items-start"
                                                        data-toggle="modal">
                                                         <h4 class="text-center text-muted">DODAJ NOWĄ KATEGORIE</h4>
@@ -246,37 +248,25 @@
                                         <div class="col-md-10">
                                             <div class="card-body">
                                                 <div class="list-group">
-                                                    <a href="#prizesModal"
-                                                       class="list-group-item list-group-item-action flex-column align-items-start"
-                                                       data-toggle="modal">
-                                                        <div class="d-flex w-100 justify-content-between">
-                                                            <h5 class="mb-1">Nagroda 2</h5>
-                                                            <small class="text-muted">Kategoria 2</small>
-                                                        </div>
-                                                        <p class="mb-1">Donec id elit non mi porta gravida at eget
-                                                            metus.
-                                                            Maecenas
-                                                            sed
-                                                            diam eget
-                                                            risus varius blandit.</p>
-                                                        <small class="text-muted">Donec id elit non mi porta.</small>
-                                                    </a>
-                                                    <a href="#prizesModal"
-                                                       class="list-group-item list-group-item-action flex-column align-items-start"
-                                                       data-toggle="modal">
-                                                        <div class="d-flex w-100 justify-content-between">
-                                                            <h5 class="mb-1">Nagroda 3</h5>
-                                                            <small class="text-muted">Kategoria 3</small>
-                                                        </div>
-                                                        <p class="mb-1">Donec id elit non mi porta gravida at eget
-                                                            metus.
-                                                            Maecenas
-                                                            sed
-                                                            diam eget
-                                                            risus varius blandit.</p>
-                                                        <small class="text-muted">Donec id elit non mi porta.</small>
-                                                    </a>
-                                                    <a href="#prizesModal"
+                                                    <c:forEach items="${prizes}" var="prize">
+                                                        <a href="#prizesModal"
+                                                           class="list-group-item list-group-item-action flex-column align-items-start"
+                                                           data-toggle="modal" data-id="prizeId"
+                                                           data-title="${prize.title}"
+                                                           data-rank="${prize.rank.toString()}"
+                                                           data-category="${prize.category.id}"
+                                                           data-description="${prize.description}"
+                                                           data-value="${prize.value}">
+                                                            <div class="d-flex w-100 justify-content-between">
+                                                                <h5 class="mb-1">${prize.rank.getValue()}</h5>
+                                                                <small class="text-muted">${prize.category.name}</small>
+                                                            </div>
+                                                            <p class="mb-1">${prize.description}</p>
+                                                            <small class="text-muted">${prize.value}
+                                                            </small>
+                                                        </a>
+                                                    </c:forEach>
+                                                    <a href="#newPrizeModal"
                                                        class="list-group-item list-group-item-action flex-column align-items-start"
                                                        data-toggle="modal">
                                                         <h4 class="text-center text-muted">DODAJ NOWĄ NAGRODĘ</h4>
@@ -319,6 +309,65 @@
                 </button>
             </div>
             <div class="modal-body">
+                <script>
+                    $('#categoriesModal').on('show.bs.modal', function (e) {
+                        var categoryId = e.relatedTarget.dataset.id;
+                        var categoryName = e.relatedTarget.dataset.name;
+                        var categoryDescription = e.relatedTarget.dataset.description;
+                        $('#categoryId').val(categoryId);
+                        $('#categoryName').val(categoryName);
+                        $('#categoryDescription').val(categoryDescription);
+                    })
+                </script>
+                <form:form method="post" action="saveCategory" modelAttribute="category">
+                    <div class="form-group">
+
+                        <form:hidden path="id" id="categoryId"/>
+
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Nazwa Kategorii<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-lg-8">
+                                <form:input path="name" type="text" name="name" id="categoryName" class="form-control"
+                                            required="required"
+                                            placeholder="" data-msg-required="To pole jest wymagane"
+                                            aria-required="true"></form:input>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Opis</label>
+                            <div class="col-lg-8">
+                                <form:textarea path="description" name="category_description" id="categoryDescription"
+                                               rows="6"
+                                               class="form-control"
+                                               placeholder=""></form:textarea>
+                            </div>
+                        </div>
+                        <form:hidden path="edition" value="${selectedEdition.number}"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <button type="submit" class="btn btn-info">Zapisz kategorię</button>
+                        <button type="button" class="btn btn-warning">Usuń kategorię</button>
+                    </div>
+                </form:form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="newCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">DODAJ KATEGORIĘ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
                 <form:form method="post" action="saveCategory" modelAttribute="category">
                     <div class="form-group">
                         <div class="row" style="padding-top: 20px;">
@@ -326,7 +375,7 @@
                             <label class="control-label col-lg-2">Nazwa Kategorii<span
                                     class="text-danger">*</span></label>
                             <div class="col-lg-8">
-                                <form:input path="name" type="text" name="name" id="name" class="form-control"
+                                <form:input path="name" type="text" name="name" id="modalName" class="form-control"
                                             required="required"
                                             placeholder="" data-msg-required="To pole jest wymagane"
                                             aria-required="true"></form:input>
@@ -365,58 +414,186 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <div class="row" style="padding-top: 20px;">
-                        <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Tytuł nagrody<span class="text-danger">*</span></label>
-                        <div class="col-lg-8">
-                            <input type="text" name="prize_title" id="prize_title" class="form-control"
-                                   required="required"
-                                   placeholder="" data-msg-required="This field is required" aria-required="true">
+                <script>
+                    $('#prizesModal').on('show.bs.modal', function (e) {
+                        var prizeId = e.relatedTarget.dataset.id;
+                        var prizeTitle = e.relatedTarget.dataset.title;
+                        var prizeRank = e.relatedTarget.dataset.rank;
+                        var value = e.relatedTarget.dataset.value;
+                        var category = e.relatedTarget.dataset.category;
+                        var description = e.relatedTarget.dataset.description;
+                        console.log(prizeRank);
+                        $('#prizeId').val(prizeId);
+                        $('#prizeTitle').val(prizeTitle);
+                        $('#prizeRank option[value="' + prizeRank + '"]').prop("selected", true);
+                        $('#value').val(value);
+                        $('#category option[value="' + category + '"]').prop("selected", true);
+                        $('#description').val(description);
+                    })
+
+                </script>
+
+                <form:form method="post" action="savePrize" modelAttribute="prize">
+                    <div class="form-group">
+                        <form:hidden path="id" id="prizeId"/>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Tytuł nagrody<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-lg-8">
+                                <form:input path="title" type="text" name="prize_title" id="prizeTitle"
+                                            class="form-control"
+                                            required="required"
+                                            placeholder="" data-msg-required="This field is required"
+                                            aria-required="true"/>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Tytuł nagrody<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-lg-8">
+                                <form:select path="rank" type="text" name="prize_rank" id="prizeRank"
+                                             class="form-control"
+                                             required="required"
+                                             placeholder="" data-msg-required="This field is required"
+                                             aria-required="true">
+                                    <option value="">Wybierz rangę nagrody</option>
+                                    <c:forEach var="rank" items="${prizeRanks}">
+                                        <option value="${rank}">${rank.getValue()}</option>
+                                    </c:forEach>
+                                </form:select>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Zawartość nagrody<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-lg-8">
+                                <form:input path="value" type="text" name="value" id="value" class="form-control"
+                                            required="required"
+                                            placeholder="" data-msg-required="This field is required"
+                                            aria-required="true"/>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Kategoria<span class="text-danger">*</span></label>
+                            <div class="col-lg-8">
+                                <div>
+                                    <form:select path="category" class="form-control" id="category"
+                                                 name="category" required="required">
+                                        <option selected hidden>Wybierz kategorię...</option>
+                                        <c:forEach items="${categories}" var="category">
+                                            <option value="${category.id}">${category.name}</option>
+                                        </c:forEach>
+                                    </form:select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Opis</label>
+                            <div class="col-lg-8">
+                                <form:textarea path="description" name="description" id="description" rows="6"
+                                               class="form-control"
+                                               placeholder=""></form:textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="row" style="padding-top: 20px;">
-                        <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Zawartość nagrody<span
-                                class="text-danger">*</span></label>
-                        <div class="col-lg-8">
-                            <input type="text" name="value" id="value" class="form-control" required="required"
-                                   placeholder="" data-msg-required="This field is required" aria-required="true">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <form:button type="submit" class="btn btn-info">Zapisz nagrodę</form:button>
+                        <button type="button" class="btn btn-warning">Usuń nagrodę</button>
+                    </div>
+                </form:form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="newPrizeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">EDYCJA NAGRODY</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form:form method="post" action="savePrize" modelAttribute="prize">
+                    <div class="form-group">
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Tytuł nagrody<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-lg-8">
+                                <form:input path="title" type="text" name="prize_title" id="prize_title"
+                                            class="form-control"
+                                            required="required"
+                                            placeholder="" data-msg-required="This field is required"
+                                            aria-required="true"/>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Tytuł nagrody<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-lg-8">
+                                <form:select path="rank" type="text" name="prize_rank" id="prize_rank"
+                                             class="form-control"
+                                             required="required"
+                                             placeholder="" data-msg-required="This field is required"
+                                             aria-required="true">
+                                    <form:option value="">Wybierz rangę nagrody</form:option>
+                                    <c:forEach var="rank" items="${prizeRanks}">
+                                        <form:option value="${rank}">${rank.getValue()}</form:option>
+                                    </c:forEach>
+                                </form:select>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Zawartość nagrody<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-lg-8">
+                                <form:input path="value" type="text" name="value" id="value" class="form-control"
+                                            required="required"
+                                            placeholder="" data-msg-required="This field is required"
+                                            aria-required="true"/>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Kategoria<span class="text-danger">*</span></label>
+                            <div class="col-lg-8">
+                                <div>
+                                    <form:select path="category" class="form-control" id="category"
+                                                 name="category" required="required">
+                                        <option selected hidden>Wybierz kategorię...</option>
+                                        <c:forEach items="${categories}" var="category">
+                                            <option value="${category.id}">${category.name}</option>
+                                        </c:forEach>
+                                    </form:select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-1"></div>
+                            <label class="control-label col-lg-2">Opis</label>
+                            <div class="col-lg-8">
+                                <form:textarea path="description" name="description" id="description" rows="6"
+                                               class="form-control"
+                                               placeholder=""></form:textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="row" style="padding-top: 20px;">
-                        <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Kategoria<span class="text-danger">*</span></label>
-                        <div class="col-lg-8">
-                            <select class="form-control" id="category"
-                                    name="category" required="required">
-                                <option value="0" selected hidden>Wybierz kategorię...</option>
-                                <option value="1">Malarstwo</option>
-                                <option value="2">Sztuka fotografii</option>
-                                <option value="3">Rzeźba i instalacja</option>
-                                <option value="4">Sztuka wideo i filmy krótkometrażowe</option>
-                                <option value="5">Występy</option>
-                                <option value="6">Sztuka wirtualna</option>
-                                <option value="7">Grafika cyfrowa</option>
-                                <option value="8">Sztuka środowiskowa</option>
-                                <option value="9">Urban art</option>
-                            </select>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <form:button type="submit" class="btn btn-info">Zapisz nagrodę</form:button>
                     </div>
-                    <div class="row" style="padding-top: 20px;">
-                        <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Opis</label>
-                        <div class="col-lg-8">
-                            <textarea name="description" id="description" rows="6" class="form-control"
-                                      placeholder=""></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                    <button type="button" class="btn btn-info">Zapisz nagrodę</button>
-                    <button type="button" class="btn btn-warning">Usuń nagrodę</button>
-                </div>
+                </form:form>
             </div>
         </div>
     </div>
