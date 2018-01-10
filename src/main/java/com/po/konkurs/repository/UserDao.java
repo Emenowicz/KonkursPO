@@ -9,5 +9,7 @@ import javax.transaction.Transactional;
 @Transactional
 @Repository("userRepository")
 public interface UserDao extends JpaRepository<UserModel, Long> {
-    public UserModel findOneByEmail(String email);
+    UserModel findOneByUsername(String username);
+
+    boolean existsByUsername(String username);
 }
