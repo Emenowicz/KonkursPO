@@ -1,11 +1,8 @@
 package com.po.konkurs.model;
 
-import org.hibernate.validator.constraints.Email;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
 
 
@@ -17,10 +14,6 @@ public class UserModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userDetails_id")
-    private UserDetailsModel userDetails;
-
     @NotNull
     private String username; /* USERNAME = EMAIL */
 
@@ -29,6 +22,10 @@ public class UserModel implements Serializable {
 
     @NotNull
     private String userRole;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userDetails_id")
+    private UserDetailsModel userDetails;
 
     @OneToMany(fetch = FetchType.EAGER)
     private Set<SubmissionModel> submissions;
@@ -68,4 +65,6 @@ public class UserModel implements Serializable {
     public UserDetailsModel getUserDetails() { return userDetails; }
 
     public void setUserDetails(UserDetailsModel userDetails) { this.userDetails = userDetails; }
+
+
 }

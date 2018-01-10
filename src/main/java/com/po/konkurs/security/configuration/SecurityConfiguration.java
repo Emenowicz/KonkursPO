@@ -21,7 +21,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -31,7 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     PasswordEncoder passwordEncoder;
 
     @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
+    JwtAuthenticationEntryPoint unauthorizedHandler;
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

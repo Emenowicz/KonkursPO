@@ -4,6 +4,10 @@ public class RegistrationResponse{
 
     private boolean isUsernameUnique;
 
+    public boolean isUsernameUnique() {
+        return isUsernameUnique;
+    }
+
     public void setUsernameUnique(boolean usernameUnique) {
         isUsernameUnique = usernameUnique;
     }
