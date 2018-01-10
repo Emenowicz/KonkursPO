@@ -48,8 +48,12 @@ public class DefaultEditionService implements EditionService {
     @Override
     public Model setMaximumEditionNumberInModel(Model model) {
         List<EditionModel> editions = editionDao.findAll();
-        EditionModel maxNumberEdition = editions.stream().max(Comparator.comparingInt(EditionModel::getNumber)).get();
-        model.addAttribute("maxNumber", maxNumberEdition.getNumber());
+        if (!editions.isEmpty()) {
+            EditionModel maxNumberEdition = editions.stream().max(Comparator.comparingInt(EditionModel::getNumber)).get();
+            model.addAttribute("maxNumber", maxNumberEdition.getNumber());
+        } else {
+            model.addAttribute("maxNumber", 0);
+        }
         return model;
     }
 

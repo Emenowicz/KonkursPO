@@ -72,8 +72,25 @@
                 </form:form>
             </h6>
         </div>
+
         <form:form method="post" action="saveEdition" modelAttribute="edition">
             <div class="card-body">
+                <c:if test="${not empty error}">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Jasny chuj!</strong> ${error}
+                    </div>
+                </c:if>
+                <c:if test="${not empty success}">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Brawo kurwa!</strong> ${success}
+                    </div>
+                </c:if>
                 <div class="form-group">
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
@@ -114,26 +131,7 @@
                             });
                         </script>
                     </div>
-                    <div class="row" style="padding-top: 20px;">
-                        <div class="col-lg-1"></div>
-                        <label class="control-label col-lg-2">Data zakończenia edycji<span
-                                class="text-danger">*</span></label>
-                        <div class="col-lg-8">
-                            <div class="input-group"> <!-- Date input -->
-                                <form:input path="endDate" class="form-control" id="end_date" name="end_date"
-                                            placeholder="YYYY-MM-DD"
-                                            value="${selectedEdition.endDate}"
-                                            type="text" required="true"/>
-                            </div>
-                        </div>
-                        <script>
-                            $('#end_date').datepicker({
-                                uiLibrary: 'bootstrap4',
-                                iconsLibrary: 'fontawesome',
-                                format: 'yyyy-mm-dd'
-                            });
-                        </script>
-                    </div>
+
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Data zakończenia zgłaszania prac<span
@@ -197,6 +195,26 @@
                             });
                         </script>
                     </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col-lg-1"></div>
+                        <label class="control-label col-lg-2">Data zakończenia edycji<span
+                                class="text-danger">*</span></label>
+                        <div class="col-lg-8">
+                            <div class="input-group"> <!-- Date input -->
+                                <form:input path="endDate" class="form-control" id="end_date" name="end_date"
+                                            placeholder="YYYY-MM-DD"
+                                            value="${selectedEdition.endDate}"
+                                            type="text" required="true"/>
+                            </div>
+                        </div>
+                        <script>
+                            $('#end_date').datepicker({
+                                uiLibrary: 'bootstrap4',
+                                iconsLibrary: 'fontawesome',
+                                format: 'yyyy-mm-dd'
+                            });
+                        </script>
+                    </div>
                     <c:if test="${selectedEdition.number>0}">
                         <div class="row" style="padding-top: 20px">
                             <div class="col-lg-1"></div>
@@ -251,7 +269,7 @@
                                                     <c:forEach items="${prizes}" var="prize">
                                                         <a href="#prizesModal"
                                                            class="list-group-item list-group-item-action flex-column align-items-start"
-                                                           data-toggle="modal" data-id="prizeId"
+                                                           data-toggle="modal" data-id="${prize.id}"
                                                            data-title="${prize.title}"
                                                            data-rank="${prize.rank.toString()}"
                                                            data-category="${prize.category.id}"
@@ -317,6 +335,7 @@
                         $('#categoryId').val(categoryId);
                         $('#categoryName').val(categoryName);
                         $('#categoryDescription').val(categoryDescription);
+                        $('#categoryIdRemove').val(categoryId);
                     })
                 </script>
                 <form:form method="post" action="saveCategory" modelAttribute="category">
@@ -350,9 +369,17 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                         <button type="submit" class="btn btn-info">Zapisz kategorię</button>
-                        <button type="button" class="btn btn-warning">Usuń kategorię</button>
+                        <button type="button" id="removeCategoryButton" class="btn btn-warning">Usuń kategorię</button>
                     </div>
                 </form:form>
+                <form method="post" action="removeCategory" hidden id="removeCategoryForm">
+                    <input hidden id="categoryIdRemove" name="categoryIdRemove"/>
+                </form>
+                <script>
+                    $('#removeCategoryButton').click(function () {
+                        $('#removeCategoryForm').submit();
+                    })
+                </script>
             </div>
         </div>
     </div>
@@ -396,7 +423,6 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                         <button type="submit" class="btn btn-info">Zapisz kategorię</button>
-                        <button type="button" class="btn btn-warning">Usuń kategorię</button>
                     </div>
                 </form:form>
             </div>
@@ -429,6 +455,7 @@
                         $('#value').val(value);
                         $('#category option[value="' + category + '"]').prop("selected", true);
                         $('#description').val(description);
+                        $('#prizeIdRemove').val(prizeId);
                     })
 
                 </script>
@@ -450,7 +477,7 @@
                         </div>
                         <div class="row" style="padding-top: 20px;">
                             <div class="col-lg-1"></div>
-                            <label class="control-label col-lg-2">Tytuł nagrody<span
+                            <label class="control-label col-lg-2">Ranga nagrody<span
                                     class="text-danger">*</span></label>
                             <div class="col-lg-8">
                                 <form:select path="rank" type="text" name="prize_rank" id="prizeRank"
@@ -483,9 +510,9 @@
                                 <div>
                                     <form:select path="category" class="form-control" id="category"
                                                  name="category" required="required">
-                                        <option selected hidden>Wybierz kategorię...</option>
+                                        <form:option value="">Wybierz kategorię...</form:option>
                                         <c:forEach items="${categories}" var="category">
-                                            <option value="${category.id}">${category.name}</option>
+                                            <form:option value="${category.id}">${category.name}</form:option>
                                         </c:forEach>
                                     </form:select>
                                 </div>
@@ -504,9 +531,17 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                         <form:button type="submit" class="btn btn-info">Zapisz nagrodę</form:button>
-                        <button type="button" class="btn btn-warning">Usuń nagrodę</button>
+                        <button type="button" id="removePrizeButton" class="btn btn-warning">Usuń nagrodę</button>
                     </div>
                 </form:form>
+                <form method="post" action="removePrize" hidden id="removePrizeForm">
+                    <input hidden id="prizeIdRemove" name="prizeIdRemove"/>
+                </form>
+                <script>
+                    $('#removePrizeButton').click(function () {
+                        $('#removePrizeForm').submit();
+                    })
+                </script>
             </div>
         </div>
     </div>
@@ -538,7 +573,7 @@
                         </div>
                         <div class="row" style="padding-top: 20px;">
                             <div class="col-lg-1"></div>
-                            <label class="control-label col-lg-2">Tytuł nagrody<span
+                            <label class="control-label col-lg-2">Ranga nagrody<span
                                     class="text-danger">*</span></label>
                             <div class="col-lg-8">
                                 <form:select path="rank" type="text" name="prize_rank" id="prize_rank"
@@ -571,9 +606,9 @@
                                 <div>
                                     <form:select path="category" class="form-control" id="category"
                                                  name="category" required="required">
-                                        <option selected hidden>Wybierz kategorię...</option>
+                                        <form:option value="">Wybierz kategorię...</form:option>
                                         <c:forEach items="${categories}" var="category">
-                                            <option value="${category.id}">${category.name}</option>
+                                            <form:option value="${category.id}">${category.name}</form:option>
                                         </c:forEach>
                                     </form:select>
                                 </div>

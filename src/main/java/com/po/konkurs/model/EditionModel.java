@@ -3,6 +3,7 @@ package com.po.konkurs.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -29,11 +30,16 @@ public class EditionModel implements Serializable {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date exhibitionDate;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "edition")
     private Set<ArtworkModel> artworks;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "edition")
     private Set<CategoryModel> categories;
+
+    @AssertTrue
+    private boolean isValid() {
+        return startDate.before(endDate) && endDate.after(exhibitionDate) && signingArtworksEndDate.after(startDate) && firstStepEndDate.after(signingArtworksEndDate) && exhibitionDate.after(firstStepEndDate);
+    }
 
     public Set<ArtworkModel> getArtworks() {
         return artworks;

@@ -21,6 +21,7 @@ public class PrizeModel implements Serializable {
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", nullable = false)
     private CategoryModel category;
 
     public long getId() {

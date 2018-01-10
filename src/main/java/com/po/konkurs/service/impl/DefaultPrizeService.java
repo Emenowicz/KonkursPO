@@ -46,6 +46,11 @@ public class DefaultPrizeService implements PrizeService {
         prizeDao.save(prize);
     }
 
+    @Override
+    public void removePrize(Long id) {
+        prizeDao.removeById(id);
+    }
+
     public PrizeDao getPrizeDao() {
         return prizeDao;
     }

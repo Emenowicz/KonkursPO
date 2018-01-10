@@ -43,6 +43,11 @@ public class DefaultCategoryService implements CategoryService {
         return categoryDao.findCategoryModelsByEditionNumber(id);
     }
 
+    @Override
+    public void removeCategory(Long id) {
+        categoryDao.removeCategoryModelById(id);
+    }
+
     public CategoryDao getCategoryDao() {
         return categoryDao;
     }

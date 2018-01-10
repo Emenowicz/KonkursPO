@@ -13,4 +13,6 @@ public interface PrizeDao extends JpaRepository<PrizeModel, Long> {
     List<PrizeModel> findAll();
 
     List<PrizeModel> findPrizeModelsByCategory_Id(long id);
+
+    void removeById(long id);
 }

@@ -16,4 +16,6 @@ public interface PrizeService {
     Model setAllPricesForAllCategoriesForEditionInModel(Model model, List<CategoryModel> categories);
 
     void saveOrUpdate(PrizeModel prize);
+
+    void removePrize(Long prizeId);
 }

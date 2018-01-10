@@ -16,4 +16,6 @@ public interface CategoryService {
     Model setCategoriesDataInModel(Model model);
 
     Model setCategoriesDataForSelectedEditionInModel(Model model, int id);
+
+    void removeCategory(Long id);
 }
