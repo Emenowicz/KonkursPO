@@ -13,11 +13,11 @@ public class SubmissionModel implements Serializable {
 
     private File paymentApproval;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     @MapsId
     private ArtworkModel artwork;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "author_id")
     private UserModel author;
 

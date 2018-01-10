@@ -15,10 +15,10 @@ public class CategoryModel implements Serializable {
 
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "category")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private Set<PrizeModel> prizes;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "edition_number")
     private EditionModel edition;
 

@@ -20,8 +20,8 @@ public class PrizeModel implements Serializable {
 
     private String description;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private CategoryModel category;
 
     public long getId() {

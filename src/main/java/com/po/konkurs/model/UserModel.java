@@ -48,7 +48,7 @@ public class UserModel implements Serializable {
 
     private String biography;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
+    @OneToMany(mappedBy = "author")
     private Set<SubmissionModel> submissions;
 
     public long getId() {

@@ -30,10 +30,10 @@ public class EditionModel implements Serializable {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date exhibitionDate;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "edition")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "edition")
     private Set<ArtworkModel> artworks;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "edition")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "edition")
     private Set<CategoryModel> categories;
 
     @AssertTrue

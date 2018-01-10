@@ -48,7 +48,7 @@ public class DefaultPrizeService implements PrizeService {
 
     @Override
     public void removePrize(Long id) {
-        prizeDao.removeById(id);
+        prizeDao.removePrizeModelById(id);
     }
 
     public PrizeDao getPrizeDao() {

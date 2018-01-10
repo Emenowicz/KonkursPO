@@ -12,11 +12,11 @@ public class ArtworkModel implements Serializable {
 
     private String title;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryModel category;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "edition_number")
     private EditionModel edition;
 

@@ -14,6 +14,5 @@ public interface CategoryDao extends JpaRepository<CategoryModel, Long> {
 
 	List<CategoryModel> findCategoryModelsByEditionNumber(int id);
 
-	@Transactional
 	void removeCategoryModelById(long id);
 }
