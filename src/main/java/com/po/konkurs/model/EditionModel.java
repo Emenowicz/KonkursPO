@@ -11,105 +11,115 @@ import java.util.Set;
 @Entity
 @Table(name = "editions")
 public class EditionModel implements Serializable {
-    @Id
-    private int number;
-    private boolean active;
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date startDate;
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date endDate;
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date signingArtworksEndDate;
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date firstStepEndDate;
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date exhibitionDate;
+	@Id
+	private int number;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "edition")
-    private Set<ArtworkModel> artworks;
+	@Transient
+	private boolean active;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "edition")
-    private Set<CategoryModel> categories;
+	@PostLoad
+	private void deriveAttributes() {
+		Date currentDate = new Date();
+		setActive(currentDate.after(startDate) && currentDate.before(endDate));
+	}
 
-    @AssertTrue
-    private boolean isValid() {
-        return startDate.before(endDate) && endDate.after(exhibitionDate) && signingArtworksEndDate.after(startDate) && firstStepEndDate.after(signingArtworksEndDate) && exhibitionDate.after(firstStepEndDate);
-    }
+	;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	private Date startDate;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	private Date endDate;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	private Date signingArtworksEndDate;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	private Date firstStepEndDate;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	private Date exhibitionDate;
 
-    public Set<ArtworkModel> getArtworks() {
-        return artworks;
-    }
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "edition")
+	private Set<ArtworkModel> artworks;
 
-    public void setArtworks(Set<ArtworkModel> artworks) {
-        this.artworks = artworks;
-    }
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "edition")
+	private Set<CategoryModel> categories;
 
-    public int getNumber() {
-        return number;
-    }
+	@AssertTrue
+	private boolean isValid() {
+		return startDate.before(endDate) && endDate.after(exhibitionDate) && signingArtworksEndDate.after(startDate) && firstStepEndDate.after(signingArtworksEndDate) && exhibitionDate.after(firstStepEndDate);
+	}
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
+	public Set<ArtworkModel> getArtworks() {
+		return artworks;
+	}
 
-    public Date getStartDate() {
-        return startDate;
-    }
+	public void setArtworks(Set<ArtworkModel> artworks) {
+		this.artworks = artworks;
+	}
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
+	public int getNumber() {
+		return number;
+	}
 
-    public Date getEndDate() {
-        return endDate;
-    }
+	public void setNumber(int number) {
+		this.number = number;
+	}
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
+	public Date getStartDate() {
+		return startDate;
+	}
 
-    public boolean isActive() {
-        return active;
-    }
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
+	public Date getEndDate() {
+		return endDate;
+	}
 
-    public Date getSigningArtworksEndDate() {
-        return signingArtworksEndDate;
-    }
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 
-    public void setSigningArtworksEndDate(Date signingArtworksEndDate) {
-        this.signingArtworksEndDate = signingArtworksEndDate;
-    }
+	public Date getSigningArtworksEndDate() {
+		return signingArtworksEndDate;
+	}
 
-    public Date getFirstStepEndDate() {
-        return firstStepEndDate;
-    }
+	public void setSigningArtworksEndDate(Date signingArtworksEndDate) {
+		this.signingArtworksEndDate = signingArtworksEndDate;
+	}
 
-    public void setFirstStepEndDate(Date firstStepEndDate) {
-        this.firstStepEndDate = firstStepEndDate;
-    }
+	public Date getFirstStepEndDate() {
+		return firstStepEndDate;
+	}
 
-    public Date getExhibitionDate() {
-        return exhibitionDate;
-    }
+	public void setFirstStepEndDate(Date firstStepEndDate) {
+		this.firstStepEndDate = firstStepEndDate;
+	}
 
-    public void setExhibitionDate(Date exhibitionDate) {
-        this.exhibitionDate = exhibitionDate;
-    }
+	public Date getExhibitionDate() {
+		return exhibitionDate;
+	}
 
-    public Set<CategoryModel> getCategories() {
-        return categories;
-    }
+	public void setExhibitionDate(Date exhibitionDate) {
+		this.exhibitionDate = exhibitionDate;
+	}
 
-    public void setCategories(Set<CategoryModel> categories) {
-        this.categories = categories;
-    }
+	public Set<CategoryModel> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<CategoryModel> categories) {
+		this.categories = categories;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 }
