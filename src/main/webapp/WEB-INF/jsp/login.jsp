@@ -1,4 +1,5 @@
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -23,7 +24,7 @@
     </div>
 </div>
 <div class="container">
-    <form method="POST" action="${contextPath}/login" class="form-signin">
+    <form id="login" method="POST" action="${contextPath}/login" class="form-signin">
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">Zaloguj się</h2>
@@ -50,6 +51,30 @@
             </div>
         </div>
     </form>
+    <script>
+        $(document).ready(function () {
+
+            $('#login').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '/login',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        name: $("#username").val(),
+                        password: $("#password").val()
+                    }),
+                    dataType: 'json',
+                    success: function(data){
+                        this.log("device control succeeded");
+                    },
+                    error: function(){
+                        this.log("Device control failed");
+                    },
+                });
+            });
+        });
+
+    </script>
 
     <div class="btn-group btn-group-justified">
         <a href="/pu1" class="btn btn-info">PU1</a>

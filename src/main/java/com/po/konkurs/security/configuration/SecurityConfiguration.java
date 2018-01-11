@@ -5,6 +5,7 @@ import com.po.konkurs.security.service.JwtUserDetailsServiceImpl;
 import com.po.konkurs.security.service.jwt.JwtAuthenticationEntryPoint;
 import com.po.konkurs.security.service.jwt.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -63,7 +64,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/", "/auth/*").permitAll()
+                .antMatchers("/login", "/", "/auth/*").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity

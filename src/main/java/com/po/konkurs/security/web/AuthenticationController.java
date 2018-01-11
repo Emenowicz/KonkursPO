@@ -3,11 +3,14 @@ package com.po.konkurs.security.web;
 import com.po.konkurs.security.service.JwtUserDetailsServiceImpl;
 import com.po.konkurs.security.service.UserRegistrationService;
 import com.po.konkurs.security.service.jwt.JwtTokenUtil;
+import com.po.konkurs.security.service.jwt.JwtUserDetails;
 import com.po.konkurs.security.web.model.AuthenticationRequest;
 import com.po.konkurs.security.web.model.AuthenticationResponse;
 import com.po.konkurs.security.web.model.RegistrationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -52,22 +55,28 @@ public class AuthenticationController {
         return registrationResponse;
     }
 
-    @RequestMapping(value = "/auth/login", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
+    @RequestMapping(value = "/login", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded")
+    public ResponseEntity<?> createAuthenticationToken(@ModelAttribute AuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
+        try {
+            final String username = authenticationRequest.getUsername();
+            final String password = authenticationRequest.getPassword();
+            final Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(username, password)
+            );
 
-        final String username = authenticationRequest.getUsername();
-        final String password = authenticationRequest.getPassword();
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        final Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username, password)
-        );
+            final JwtUserDetails userDetails = jwtUserDetailsServiceImpl.loadUserByUsername(authenticationRequest.getUsername());
+            final String authToken = jwtTokenUtil.generateToken(userDetails, device);
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+            return ResponseEntity.ok(new AuthenticationResponse(authToken, userDetails.getUser().getUserRole()));
 
-        final UserDetails userDetails = jwtUserDetailsServiceImpl.loadUserByUsername(authenticationRequest.getUsername());
-        final String authToken = jwtTokenUtil.generateToken(userDetails, device);
-
-        return ResponseEntity.ok(new AuthenticationResponse(authToken));
+        }
+        catch(Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.FORBIDDEN)
+                    .body("Login not succesful.");
+        }
     }
 
     @RequestMapping(value = "/refreshToken", method = RequestMethod.GET)
