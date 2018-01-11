@@ -55,9 +55,9 @@ public class EditionManagementController {
 	}
 
     @RequestMapping(value = {"/savePrize"}, method = RequestMethod.POST)
-	public String saveOrUpdateCategory(Model model, @Valid @ModelAttribute("prize") PrizeModel prize,
-									   BindingResult bindingResult, HttpServletRequest request,
-									   final RedirectAttributes redirectAttributes) {
+	public String saveOrUpdatePrize(Model model, @Valid @ModelAttribute("prize") PrizeModel prize,
+									BindingResult bindingResult, HttpServletRequest request,
+									final RedirectAttributes redirectAttributes) {
 		String previousPage = request.getHeader("Referer");
 		if (bindingResult.hasErrors()) {
 			redirectAttributes.addFlashAttribute("error", "Błędne dane nagrody. Spróbuj ponownie");

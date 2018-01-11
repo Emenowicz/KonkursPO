@@ -73,14 +73,15 @@
             </h6>
         </div>
 
-        <form:form method="post" action="saveEdition" modelAttribute="edition">
+        <form:form method="post" action="saveEdition" id="saveEditionForm" modelAttribute="edition">
+
             <div class="card-body">
                 <c:if test="${not empty error}">
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <strong>Jasny chuj!</strong> ${error}
+                        <strong>Błąd</strong> ${error}
                     </div>
                 </c:if>
                 <c:if test="${not empty success}">
@@ -88,7 +89,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <strong>Brawo kurwa!</strong> ${success}
+                        <strong>Sukces!</strong> ${success}
                     </div>
                 </c:if>
                 <div class="form-group">
@@ -120,7 +121,7 @@
                                 <form:input path="startDate" class="form-control" id="start_date" name="start_date"
                                             placeholder="YYYY-MM-DD"
                                             value="${selectedEdition.startDate}"
-                                            type="text" required="true"/>
+                                            type="text" required="true" readonly="true"/>
                             </div>
                         </div>
                         <script>
@@ -142,7 +143,7 @@
                                             name="signing_date"
                                             placeholder="YYYY-MM-DD"
                                             value="${selectedEdition.signingArtworksEndDate}"
-                                            type="text" required="true"/>
+                                            type="text" required="true" readonly="true"/>
                             </div>
                         </div>
                         <script>
@@ -163,7 +164,7 @@
                                             name="step1End_date"
                                             placeholder="YYYY-MM-DD"
                                             value="${selectedEdition.firstStepEndDate}"
-                                            type="text" required="true"/>
+                                            type="text" required="true" readonly="true"/>
                             </div>
                         </div>
                         <script>
@@ -184,7 +185,7 @@
                                             name="exhibitionDate"
                                             placeholder="YYYY-MM-DD"
                                             value="${selectedEdition.exhibitionDate}"
-                                            type="text" required="true"/>
+                                            type="text" required="true" readonly="true"/>
                             </div>
                         </div>
                         <script>
@@ -204,7 +205,7 @@
                                 <form:input path="endDate" class="form-control" id="end_date" name="end_date"
                                             placeholder="YYYY-MM-DD"
                                             value="${selectedEdition.endDate}"
-                                            type="text" required="true"/>
+                                            type="text" required="true" readonly="true"/>
                             </div>
                         </div>
                         <script>
@@ -314,6 +315,7 @@
         </form:form>
     </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="categoriesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
