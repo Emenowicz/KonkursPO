@@ -1,7 +1,6 @@
 package com.po.konkurs.model;
 
 import javax.persistence.*;
-import java.io.File;
 import java.io.Serializable;
 
 @Entity
@@ -11,7 +10,8 @@ public class SubmissionModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private File paymentApproval;
+    @Lob
+    private byte[] paymentApproval;
 
     @OneToOne
     @MapsId
@@ -29,14 +29,6 @@ public class SubmissionModel implements Serializable {
         this.id = id;
     }
 
-    public File getPaymentApproval() {
-        return paymentApproval;
-    }
-
-    public void setPaymentApproval(File paymentApproval) {
-        this.paymentApproval = paymentApproval;
-    }
-
     public ArtworkModel getArtwork() {
         return artwork;
     }
@@ -51,5 +43,13 @@ public class SubmissionModel implements Serializable {
 
     public void setAuthor(UserModel author) {
         this.author = author;
+    }
+
+    public byte[] getPaymentApproval() {
+        return paymentApproval;
+    }
+
+    public void setPaymentApproval(byte[] paymentApproval) {
+        this.paymentApproval = paymentApproval;
     }
 }

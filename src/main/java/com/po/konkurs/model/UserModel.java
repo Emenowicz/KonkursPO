@@ -17,7 +17,6 @@ public class UserModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
     private String name;
 
     private String lastName;
@@ -26,13 +25,15 @@ public class UserModel implements Serializable {
 
     private String nationality;
 
-    private String bornPlace;
+    private String birthplace;
 
     private Date dateOfBirth;
 
     private String country;
 
     private String city;
+
+    private String zipCode;
 
     private String street;
 
@@ -44,12 +45,25 @@ public class UserModel implements Serializable {
     @Email
     private String email;
 
+    @Lob
+    private byte[] idCard;
+
     private String webpage;
 
     private String biography;
 
     @OneToMany(mappedBy = "author")
     private Set<SubmissionModel> submissions;
+
+
+    public byte[] getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(byte[] idCard) {
+        this.idCard = idCard;
+    }
+
 
     public long getId() {
         return id;
@@ -91,12 +105,12 @@ public class UserModel implements Serializable {
         this.nationality = nationality;
     }
 
-    public String getBornPlace() {
-        return bornPlace;
+    public String getBirthplace() {
+        return birthplace;
     }
 
-    public void setBornPlace(String bornPlace) {
-        this.bornPlace = bornPlace;
+    public void setBirthplace(String birthPlace) {
+        this.birthplace = birthPlace;
     }
 
     public Date getDateOfBirth() {
@@ -113,6 +127,14 @@ public class UserModel implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getCity() {

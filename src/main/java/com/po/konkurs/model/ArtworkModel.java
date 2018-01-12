@@ -20,6 +20,9 @@ public class ArtworkModel implements Serializable {
     @JoinColumn(name = "edition_number")
     private EditionModel edition;
 
+    @Lob
+    private byte[] artworkCopy;
+
     private boolean qualified;
 
     public long getId() {
@@ -60,5 +63,13 @@ public class ArtworkModel implements Serializable {
 
     public void setQualified(boolean qualified) {
         this.qualified = qualified;
+    }
+
+    public byte[] getArtworkCopy() {
+        return artworkCopy;
+    }
+
+    public void setArtworkCopy(byte[] artworkCopy) {
+        this.artworkCopy = artworkCopy;
     }
 }
