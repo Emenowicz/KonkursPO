@@ -57,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         httpSecurity.
                 authorizeRequests()
-                .antMatchers("/", "/login", "/home", "auth/login", "/auth/register", "/pu2", "/pu1", "/rate_artwork", "/assign_prize", "/show_review", "/id_confirm", "/submit_entry", "/payment_confirmation", "/complete").permitAll()
+                .antMatchers("/", "/login", "/home", "auth/login", "/auth/register", "/pu2", "/pu1", "/rate_artwork", "/assign_prize", "/show_review", "/id_confirm", "/submit_entry", "/payment_confirmation", "/complete", "/setUserDetails" , "/getUserDetails").permitAll()
                 .antMatchers("/pu3").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").loginProcessingUrl("/auth/login").failureUrl("/login?error=true")

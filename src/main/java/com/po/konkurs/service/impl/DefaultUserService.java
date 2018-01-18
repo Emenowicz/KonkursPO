@@ -1,18 +1,18 @@
 package com.po.konkurs.service.impl;
 
-import com.po.konkurs.model.RoleModel;
-import com.po.konkurs.model.UserDetailsModel;
-import com.po.konkurs.model.UserModel;
+import com.po.konkurs.model.*;
+import com.po.konkurs.repository.ArtworkRepository;
+import com.po.konkurs.repository.EditionRepository;
 import com.po.konkurs.repository.RoleRepository;
 import com.po.konkurs.repository.UserRepository;
 import com.po.konkurs.security.service.JwtUserDetails;
+import com.po.konkurs.service.ArtworkService;
+import com.po.konkurs.service.EditionService;
+import com.po.konkurs.service.SubmissionService;
 import com.po.konkurs.service.UserService;
-import com.po.konkurs.utils.wrappers.UserArtworkSubmissionWrapper;
-import com.po.konkurs.web.controllers.model.SaveUserDetailsRequest;
 import com.po.konkurs.web.controllers.model.UserDetailsResponse;
+import com.po.konkurs.web.controllers.wrappers.UserArtworkSubmissionWrapper;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -30,11 +30,14 @@ public class DefaultUserService implements UserService {
     private UserRepository userRepository;
     @Resource
     private RoleRepository roleRepository;
+    @Resource
+    private EditionService editionService;
 
-//    @Autowired
-//    public DefaultUserService(@Qualifier("userRepository") UserRepository userRepository, @Qualifier("roleRepository") RoleRepository roleRepository) {
-//        this.userRepository = userRepository;
-//    }
+    @Resource
+    private SubmissionService submissionService;
+
+    @Resource
+    private ArtworkService artworkService;
 
     @Override
     public UserModel saveOrUpdate(UserModel userModel) {
@@ -91,12 +94,17 @@ public class DefaultUserService implements UserService {
         userModel.setActive(1);
         RoleModel userRole = roleRepository.findByRole("USER");
         userModel.setRoles(new HashSet<>(Arrays.asList(userRole)));
-        return new UserModel();
+        return userModel;
     }
 
     public void saveUserDetails(UserArtworkSubmissionWrapper userArtworkSubmissionWrapper) {
         UserModel userModel = createNewRandomUser();
-        userModel.setUserDetails(userArtworkSubmissionWrapper.());
+        userModel.setUserDetails(userArtworkSubmissionWrapper.getUserDetailsModel());
+
+        SubmissionModel submissionModel = userArtworkSubmissionWrapper.getSubmissionModel();
+        submissionModel.setArtwork(userArtworkSubmissionWrapper.getArtworkModel());
+        submissionModel.setAuthor(userModel);
+        userModel.setSubmissions(new HashSet<>(Arrays.asList(userArtworkSubmissionWrapper.getSubmissionModel())));
 
         userRepository.save(userModel);
     }

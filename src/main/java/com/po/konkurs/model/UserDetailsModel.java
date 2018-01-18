@@ -1,8 +1,10 @@
 package com.po.konkurs.model;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -31,7 +33,7 @@ public class UserDetailsModel {
     @NotEmpty
     private String bornPlace;
 
-    @NotEmpty
+    @NotNull
     private Date dateOfBirth;
 
     @NotEmpty
@@ -58,6 +60,28 @@ public class UserDetailsModel {
     @NotEmpty
     private String webpage;
 
+    @NotEmpty
+    private String zipcode;
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    @Email
+    @NotEmpty
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
 
     public String getName() {
         return name;

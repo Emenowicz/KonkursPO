@@ -17,4 +17,6 @@ public interface EditionService {
     Model setSelectedEditionDataInModel(Model model, int id);
 
     Model setMaximumEditionNumberInModel(Model model);
+
+    EditionModel getCurrentEdition();
 }

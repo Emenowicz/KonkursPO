@@ -37,7 +37,7 @@ public class UserModel implements Serializable {
     @JoinColumn(name = "userDetails_id")
     private UserDetailsModel userDetails;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private Set<SubmissionModel> submissions;
 
     public long getId() {

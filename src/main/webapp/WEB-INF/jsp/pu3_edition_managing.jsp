@@ -129,7 +129,7 @@
                                 <form:input path="startDate" class="form-control" id="start_date" name="start_date"
                                             placeholder="YYYY-MM-DD"
                                             value="${selectedEdition.startDate}"
-                                            type="text" required="true" readonly="true"/>
+                                            type="text" required="true"/>
                             </div>
                         </div>
                         <script>
@@ -151,7 +151,7 @@
                                             name="signing_date"
                                             placeholder="YYYY-MM-DD"
                                             value="${selectedEdition.signingArtworksEndDate}"
-                                            type="text" required="true" readonly="true"/>
+                                            type="text" required="true"/>
                             </div>
                         </div>
                         <script>
@@ -172,7 +172,7 @@
                                             name="step1End_date"
                                             placeholder="YYYY-MM-DD"
                                             value="${selectedEdition.firstStepEndDate}"
-                                            type="text" required="true" readonly="true"/>
+                                            type="text" required="true" />
                             </div>
                         </div>
                         <script>
@@ -193,7 +193,7 @@
                                             name="exhibitionDate"
                                             placeholder="YYYY-MM-DD"
                                             value="${selectedEdition.exhibitionDate}"
-                                            type="text" required="true" readonly="true"/>
+                                            type="text" required="true" />
                             </div>
                         </div>
                         <script>
@@ -213,7 +213,7 @@
                                 <form:input path="endDate" class="form-control" id="end_date" name="end_date"
                                             placeholder="YYYY-MM-DD"
                                             value="${selectedEdition.endDate}"
-                                            type="text" required="true" readonly="true"/>
+                                            type="text" required="true"/>
                             </div>
                         </div>
                         <script>

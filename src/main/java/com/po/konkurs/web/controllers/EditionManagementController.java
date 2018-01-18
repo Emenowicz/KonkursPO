@@ -111,6 +111,11 @@ public class EditionManagementController {
 		return "redirect:" + previousPage;
 	}
 
+	@RequestMapping(value = {"/getCurrentEdition"}, method = RequestMethod.GET)
+	public EditionModel getCurrentEdition(@ModelAttribute("error") String error, @ModelAttribute("success") String success) {
+		return editionService.getCurrentEdition();
+	}
+
     public EditionService getEditionService() {
         return editionService;
     }

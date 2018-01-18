@@ -41,8 +41,8 @@
     </div>
 </div>
 <div class="container">
-    <form:form modelAttribute="userArtworkWrapper" class="form-horizontal" id="registerForm" method="GET"
-               action="/complete">
+    <form:form modelAttribute="userArtworkWrapper" class="form-horizontal" id="registerForm" method="POST"
+               action="/setUserDetails">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title text-info">INFORMACJE</h5>
@@ -54,7 +54,7 @@
                         <label class="control-label col-lg-2">Imię<span class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <form:input type="text" name="name" id="name" class="form-control" required="required"
-                                        path="userModel.name"/>
+                                        path="userDetailsModel.name"/>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
@@ -64,7 +64,7 @@
                             <form:input type="text" name="lastname" id="lastname" class="form-control"
                                         required="required"
                                         placeholder=""
-                                        path="userModel.lastName"/>
+                                        path="userDetailsModel.lastName"/>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
@@ -72,14 +72,14 @@
                         <label class="control-label col-lg-2">Pseudonim artystyczny</label>
                         <div class="col-lg-8">
                             <form:input type="text" name="pseudonim" id="pseudonim" class="form-control" placeholder=""
-                                        path="userModel.alias"/>
+                                        path="userDetailsModel.alias"/>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Narodowość<span class="text-danger">*</span></label>
                         <div class="col-lg-8">
-                            <form:select path="userModel.nationality" class="form-control" id="nationality"
+                            <form:select path="userDetailsModel.nationality" class="form-control" id="nationality"
                                          name="nationality"
                                          required="required">
                                 <option selected disabled>Wybierz kraj...</option>
@@ -95,7 +95,7 @@
                         <label class="control-label col-lg-2">Miejsce urodzenia<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-8">
-                            <form:input path="userModel.birthplace" type="text" name="birthplace" id="birthplace"
+                            <form:input path="userDetailsModel.bornPlace" type="text" name="birthplace" id="birthplace"
                                         class="form-control"/>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                         <label class="control-label col-lg-2">Data urodzenia<span class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <div class="input-group "> <!-- Date input -->
-                                <form:input path="userModel.dateOfBirth" class="form-control" id="datepicker"
+                                <form:input path="userDetailsModel.dateOfBirth" class="form-control" id="datepicker"
                                             name="dateofbirth" placeholder="YYYY-MM-DD"
                                             type="text" onchange="check_for_below_25()"/>
                             </div>
@@ -172,7 +172,7 @@
                             lub pdf</label>
                         <div class="col-lg-8">
                             <div class="form-group">
-                                <form:input path="userModel.idCard" type="file" class="form-control-file" id="id_card"
+                                <form:input path="userDetailsModel.idCard" type="file" class="form-control-file" id="id_card"
                                             aria-describedby="fileHelp" accept=".pdf, .jpg, .doc"/>
                                 <small id="fileHelp" class="form-text text-muted">2 mb max</small>
                                     <%--TODO: FILESIZE--%>
@@ -195,7 +195,7 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Kraj<span class="text-danger">*</span></label>
                         <div class="col-lg-8">
-                            <form:select path="userModel.country" class="form-control" id="country"
+                            <form:select path="userDetailsModel.country" class="form-control" id="country"
                                          name="country" required="required">
                                 <option selected hidden>Wybierz kraj...</option>
                                 <option value="Afganistan">Afganistan</option>
@@ -209,13 +209,13 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Miasto<span class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <form:input path="userModel.city" type="text" name="city" id="city" class="form-control"
+                            <form:input path="userDetailsModel.city" type="text" name="city" id="city" class="form-control"
                                         required="required"/>
                         </div>
                         <label class="control-label col-lg-2">Kod pocztowy<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <form:input path="userModel.zipCode" type="text" name="postcode" format="\d{2}-\d{3}"
+                            <form:input path="userDetailsModel.zipcode" type="text" name="postcode" format="\d{2}-\d{3}"
                                         title="Przykładowy format: 99-999" id="postcode" class="form-control"
                                         required="required"/>
                         </div>
@@ -225,7 +225,7 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Ulica<span class="text-danger">*</span></label>
                         <div class="col-lg-8">
-                            <form:input path="userModel.street" type="text" name="street" id="street"
+                            <form:input path="userDetailsModel.street" type="text" name="street" id="street"
                                         format="\s+\w+\s+\d+(\W\d+)?" title="Nazwa ulicy i numer domu/mieszkania"
                                         class="form-control"/>
                         </div>
@@ -235,15 +235,13 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Nr telefonu<span class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <form:input path="userModel.phoneNumber" type="text" name="telephone" id="telephone"
-                                        class="form-control"
-                                        pattern="/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{3})/"/>
+                            <form:input path="userDetailsModel.phoneNumber" type="text" name="telephone" id="telephone"
+                                        class="form-control"/>
                         </div>
                         <label class="control-label col-lg-2 ">Nr komórkowy</label>
                         <div class="col-lg-3">
-                            <form:input path="userModel.mobileNumber" type="text" name="mobile" id="mobile"
-                                        class="form-control"
-                                        pattern="/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{3})/"/>
+                            <form:input path="userDetailsModel.mobileNumber" type="text" name="mobile" id="mobile"
+                                        class="form-control"/>
                         </div>
                     </div>
 
@@ -251,7 +249,7 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">E-mail<span class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <form:input path="userModel.email" type="text" name="email" id="email"
+                            <form:input path="userDetailsModel.email" type="text" name="email" id="email"
                                         class="form-control"/>
                         </div>
                         <label class="control-label col-lg-2">Powtórz e-mail<span
@@ -267,7 +265,7 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Adres strony internetowej</label>
                         <div class="col-lg-8">
-                            <form:input path="userModel.webpage" type="text" name="website" id="website"
+                            <form:input path="userDetailsModel.webpage" type="text" name="website" id="website"
                                         class="form-control" placeholder=""
                                         pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})"
                                         data-msg-url="Wprowadź poprawny adres"/>
@@ -287,7 +285,7 @@
                         <label class="control-label col-lg-2">Biografia<span class="text-danger">*</span><span
                                 class="text-size-small"><br><br><em>Maksymalnie 5000 znaków</em></span></label>
                         <div class="col-lg-8">
-                            <form:textarea path="userModel.biography" class="form-control" rows="5" type="text"
+                            <form:textarea path="userDetailsModel.biography" class="form-control" rows="5" type="text"
                                            name="biography"
                                            id="biography" value="" maxlength="5000"></form:textarea>
                         </div>
@@ -437,6 +435,18 @@
                 }
             }
         })
+    </script>
+    <script>
+        var currentEdition;
+        $.ajax({
+            type: "GET",
+            url: "/getCurrentEdition",
+            data: currentEdition,
+            cache: false,
+            success: function(data){
+                $("#resultarea").text(data);
+            }
+        });
     </script>
 </div>
 </body>

@@ -2,13 +2,14 @@ package com.po.konkurs.web.controllers.wrappers;
 
 import com.po.konkurs.model.ArtworkModel;
 import com.po.konkurs.model.SubmissionModel;
+import com.po.konkurs.model.UserDetailsModel;
 import com.po.konkurs.model.UserModel;
 
 import javax.validation.Valid;
 
 public class UserArtworkSubmissionWrapper {
 	@Valid
-	private UserModel userModel;
+	private UserDetailsModel userDetailsModel;
 
 	@Valid
 	private ArtworkModel artworkModel;
@@ -26,12 +27,12 @@ public class UserArtworkSubmissionWrapper {
 		this.submissionModel = submissionModel;
 	}
 
-	public UserModel getUserModel() {
-		return userModel;
+	public UserDetailsModel getUserDetailsModel() {
+		return userDetailsModel;
 	}
 
-	public void setUserModel(UserModel userModel) {
-		this.userModel = userModel;
+	public void setUserDetailsModel(UserDetailsModel userDetailsModel) {
+		this.userDetailsModel = userDetailsModel;
 	}
 
 	public ArtworkModel getArtworkModel() {

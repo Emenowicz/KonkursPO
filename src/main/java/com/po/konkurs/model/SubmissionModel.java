@@ -13,11 +13,11 @@ public class SubmissionModel implements Serializable {
     @Lob
     private byte[] paymentApproval;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @MapsId
     private ArtworkModel artwork;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private UserModel author;
 

@@ -17,7 +17,6 @@ public class DefaultEditionService implements EditionService {
     @Resource
     EditionRepository editionRepository;
 
-
     @Override
     public EditionModel saveOrUpdate(EditionModel edition) {
         return editionRepository.save(edition);
@@ -55,6 +54,15 @@ public class DefaultEditionService implements EditionService {
             model.addAttribute("maxNumber", 0);
         }
         return model;
+    }
+
+    @Override
+    public EditionModel getCurrentEdition() {
+        List<EditionModel> editions = editionRepository.findAll();
+        if (!editions.isEmpty()) {
+            return editions.stream().max(Comparator.comparingInt(EditionModel::getNumber)).get();
+        }
+        return null;
     }
 
     public EditionRepository getEditionRepository() {

@@ -14,7 +14,5 @@ public interface EditionRepository extends JpaRepository<EditionModel, Integer> 
 
     List<EditionModel> findAllByOrderByNumberDesc();
 
-
     EditionModel findEditionModelByNumber(int number);
-
 }

@@ -20,6 +20,8 @@ public class ArtworkModel implements Serializable {
     @JoinColumn(name = "edition_number")
     private EditionModel edition;
 
+
+
     @Lob
     private byte[] artworkCopy;
 
