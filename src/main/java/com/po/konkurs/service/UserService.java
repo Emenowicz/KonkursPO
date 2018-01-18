@@ -1,13 +1,22 @@
 package com.po.konkurs.service;
 
 import com.po.konkurs.model.UserModel;
+import com.po.konkurs.web.controllers.model.SaveUserDetailsRequest;
+import com.po.konkurs.web.controllers.model.UserDetailsResponse;
 
 import java.util.List;
 
 public interface UserService {
-    public UserModel saveOrUpdate(UserModel userModel);
 
-    public List<UserModel> getAllUsers();
+    UserModel saveOrUpdate(UserModel userModel);
 
-    public UserModel getUserByEmail(String email);
+    List<UserModel> getAllUsers();
+
+    UserModel getUserByUsername(String username);
+
+    UserModel getCurrentlyLoggedInUser();
+
+    UserDetailsResponse createUserDetailsResponse();
+
+    void saveUserDetails(SaveUserDetailsRequest saveUserDetailsRequest);
 }

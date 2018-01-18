@@ -1,11 +1,11 @@
 package com.po.konkurs.model;
 
-import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
 
 
@@ -15,38 +15,27 @@ public class UserModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="user_id")
     private long id;
 
-
-    private String name;
-
-    private String lastName;
-
-    private String alias;
-
-    private String nationality;
-
-    private String bornPlace;
-
-    private Date dateOfBirth;
-
-    private String country;
-
-    private String city;
-
-    private String street;
-
-    private String phoneNumber;
-
-    private String mobileNumber;
-
     @NotNull
-    @Email
-    private String email;
+    private String username; /* USERNAME = EMAIL */
 
-    private String webpage;
+    @Column(name = "password")
+    @Length(min = 5, message = "*Your password must have at least 5 characters")
+    @NotEmpty(message = "*Please provide your password")
+    private String password;
 
-    private String biography;
+    @Column(name = "active")
+    private int active;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleModel> roles;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userDetails_id")
+    private UserDetailsModel userDetails;
 
     @OneToMany(mappedBy = "author")
     private Set<SubmissionModel> submissions;
@@ -59,116 +48,12 @@ public class UserModel implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAlias() {
-        return alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    public String getBornPlace() {
-        return bornPlace;
-    }
-
-    public void setBornPlace(String bornPlace) {
-        this.bornPlace = bornPlace;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getWebpage() {
-        return webpage;
-    }
-
-    public void setWebpage(String webpage) {
-        this.webpage = webpage;
-    }
-
-    public String getBiography() {
-        return biography;
-    }
-
-    public void setBiography(String biography) {
-        this.biography = biography;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Set<SubmissionModel> getSubmissions() {
@@ -178,4 +63,29 @@ public class UserModel implements Serializable {
     public void setSubmissions(Set<SubmissionModel> submissions) {
         this.submissions = submissions;
     }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public UserDetailsModel getUserDetails() { return userDetails; }
+
+    public void setUserDetails(UserDetailsModel userDetails) { this.userDetails = userDetails; }
+
+    public Set<RoleModel> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleModel> roles) {
+        this.roles = roles;
+    }
+
 }
