@@ -9,7 +9,7 @@ import java.util.List;
 
 @Transactional
 @Repository("prizeRepository")
-public interface PrizeDao extends JpaRepository<PrizeModel, Long> {
+public interface PrizeRepository extends JpaRepository<PrizeModel, Long> {
     List<PrizeModel> findAll();
 
     List<PrizeModel> findPrizeModelsByCategory_Id(long id);

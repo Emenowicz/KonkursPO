@@ -9,7 +9,7 @@ import java.util.List;
 
 @Transactional
 @Repository("editionRepository")
-public interface EditionDao extends JpaRepository<EditionModel, Integer> {
+public interface EditionRepository extends JpaRepository<EditionModel, Integer> {
     List<EditionModel> findAll();
 
     List<EditionModel> findAllByOrderByNumberDesc();

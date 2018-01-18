@@ -8,6 +8,10 @@ import javax.transaction.Transactional;
 
 @Transactional
 @Repository("userRepository")
-public interface UserDao extends JpaRepository<UserModel, Long> {
-    public UserModel findOneByEmail(String email);
+public interface UserRepository extends JpaRepository<UserModel, Long> {
+    UserModel findOneByUsername(String username);
+
+    boolean existsByUsername(String username);
+
+    UserModel findUserModelByUsername(String username);
 }

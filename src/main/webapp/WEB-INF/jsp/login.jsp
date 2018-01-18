@@ -1,4 +1,6 @@
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -10,9 +12,17 @@
 
     <title>Zaloguj się</title>
 
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
-    <script src="/jquery/jquery-3.2.1.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -23,21 +33,18 @@
     </div>
 </div>
 <div class="container">
-    <form method="POST" action="${contextPath}/login" class="form-signin">
+    <form id="login" method="POST" action='<spring:url value="/auth/login"/>' class="form-signin" >
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">Zaloguj się</h2>
             </div>
-            <c:forEach>
-
-            </c:forEach>
             <div class="card-body">
                 <div class="form-group ${error != null ? 'has-error' : ''}">
                     <span>${message}</span>
-                    <input name="username" type="text" class="form-control" placeholder="Username"
+                    <input name="username" id="username" type="text" class="form-control" placeholder="Username"
                            autofocus="true"/>
                     <br/>
-                    <input name="password" type="password" class="form-control" placeholder="Password"/>
+                    <input name="password" id="password" type="password" class="form-control" placeholder="Password"/>
                     <span>${error}</span>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <br/>
