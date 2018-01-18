@@ -1,6 +1,6 @@
 package com.po.konkurs.security.web.model;
 
-public class AuthenticationRequest {
+public class RegistrationRequest {
 
     private String username;
     private String password;

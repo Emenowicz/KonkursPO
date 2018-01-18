@@ -1,7 +1,7 @@
 package com.po.konkurs.service.impl;
 
 import com.po.konkurs.model.EditionModel;
-import com.po.konkurs.repository.EditionDao;
+import com.po.konkurs.repository.EditionRepository;
 import com.po.konkurs.service.EditionService;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -15,22 +15,22 @@ import java.util.List;
 @Service
 public class DefaultEditionService implements EditionService {
     @Resource
-    EditionDao editionDao;
+    EditionRepository editionRepository;
 
 
     @Override
     public EditionModel saveOrUpdate(EditionModel edition) {
-        return editionDao.save(edition);
+        return editionRepository.save(edition);
     }
 
     @Override
     public List<EditionModel> getEditionsList() {
-        return editionDao.findAllByOrderByNumberDesc();
+        return editionRepository.findAllByOrderByNumberDesc();
     }
 
     @Override
     public EditionModel getEditionById(int id) {
-        return editionDao.findEditionModelByNumber(id);
+        return editionRepository.findEditionModelByNumber(id);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class DefaultEditionService implements EditionService {
 
     @Override
     public Model setMaximumEditionNumberInModel(Model model) {
-        List<EditionModel> editions = editionDao.findAll();
+        List<EditionModel> editions = editionRepository.findAll();
         if (!editions.isEmpty()) {
             EditionModel maxNumberEdition = editions.stream().max(Comparator.comparingInt(EditionModel::getNumber)).get();
             model.addAttribute("maxNumber", maxNumberEdition.getNumber());
@@ -57,11 +57,11 @@ public class DefaultEditionService implements EditionService {
         return model;
     }
 
-    public EditionDao getEditionDao() {
-        return editionDao;
+    public EditionRepository getEditionRepository() {
+        return editionRepository;
     }
 
-    public void setEditionDao(EditionDao editionDao) {
-        this.editionDao = editionDao;
+    public void setEditionRepository(EditionRepository editionRepository) {
+        this.editionRepository = editionRepository;
     }
 }

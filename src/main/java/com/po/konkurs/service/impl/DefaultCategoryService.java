@@ -1,7 +1,7 @@
 package com.po.konkurs.service.impl;
 
 import com.po.konkurs.model.CategoryModel;
-import com.po.konkurs.repository.CategoryDao;
+import com.po.konkurs.repository.CategoryRepository;
 import com.po.konkurs.service.CategoryService;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -14,16 +14,16 @@ import java.util.List;
 @Service
 public class DefaultCategoryService implements CategoryService {
     @Resource
-    CategoryDao categoryDao;
+    CategoryRepository categoryRepository;
 
     @Override
     public CategoryModel saveOrUpdate(CategoryModel categoryModel) {
-        return categoryDao.save(categoryModel);
+        return categoryRepository.save(categoryModel);
     }
 
     @Override
     public List<CategoryModel> getCategoryList() {
-        return categoryDao.findAll();
+        return categoryRepository.findAll();
     }
 
     @Override
@@ -40,19 +40,19 @@ public class DefaultCategoryService implements CategoryService {
 
     @Override
     public List<CategoryModel> getCategoryListForEdition(int id) {
-        return categoryDao.findCategoryModelsByEditionNumber(id);
+        return categoryRepository.findCategoryModelsByEditionNumber(id);
     }
 
     @Override
     public void removeCategory(Long id) {
-        categoryDao.removeCategoryModelById(id);
+        categoryRepository.removeCategoryModelById(id);
     }
 
-    public CategoryDao getCategoryDao() {
-        return categoryDao;
+    public CategoryRepository getCategoryRepository() {
+        return categoryRepository;
     }
 
-    public void setCategoryDao(CategoryDao categoryDao) {
-        this.categoryDao = categoryDao;
+    public void setCategoryRepository(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 }

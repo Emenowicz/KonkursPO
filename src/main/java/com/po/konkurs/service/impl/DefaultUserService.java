@@ -2,7 +2,7 @@ package com.po.konkurs.service.impl;
 
 import com.po.konkurs.model.UserDetailsModel;
 import com.po.konkurs.model.UserModel;
-import com.po.konkurs.repository.UserDao;
+import com.po.konkurs.repository.UserRepository;
 import com.po.konkurs.security.service.JwtUserDetails;
 import com.po.konkurs.service.UserService;
 import com.po.konkurs.web.controllers.model.SaveUserDetailsRequest;
@@ -18,27 +18,27 @@ import java.util.List;
 @Transactional
 public class DefaultUserService implements UserService {
 
-    UserDao userDao;
+    UserRepository userRepository;
 
     @Autowired
-    public DefaultUserService(UserDao userDao) {
-        this.userDao = userDao;
+    public DefaultUserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public UserModel saveOrUpdate(UserModel userModel) {
 
-        return userDao.save(userModel);
+        return userRepository.save(userModel);
     }
 
     @Override
     public List<UserModel> getAllUsers() {
-        return userDao.findAll();
+        return userRepository.findAll();
     }
 
     @Override
     public UserModel getUserByUsername(String username) {
-        return userDao.findUserModelByUsername(username);
+        return userRepository.findUserModelByUsername(username);
     }
 
     public UserModel getCurrentlyLoggedInUser() {
@@ -88,6 +88,6 @@ public class DefaultUserService implements UserService {
         userDetails.setWebpage(saveUserDetailsRequest.getWebpage());
 
         user.setUserDetails(userDetails);
-        userDao.save(user);
+        userRepository.save(user);
     }
 }

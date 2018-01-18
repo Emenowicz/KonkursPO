@@ -2,7 +2,7 @@ package com.po.konkurs.security.web;
 
 import com.po.konkurs.model.UserModel;
 import com.po.konkurs.security.service.UserRegistrationService;
-import com.po.konkurs.security.web.model.AuthenticationRequest;
+import com.po.konkurs.security.web.model.RegistrationRequest;
 import com.po.konkurs.security.web.model.RegistrationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +15,10 @@ public class AuthenticationController {
     private UserRegistrationService userRegistrationService;
 
     @RequestMapping(value = "/auth/register", produces = "application/json", method = RequestMethod.POST)
-    public RegistrationResponse registerUser(@RequestBody AuthenticationRequest authenticationRequest) {
+    public RegistrationResponse registerUser(@RequestBody RegistrationRequest registrationRequest) {
 
-        final String username = authenticationRequest.getUsername();
-        final String password = authenticationRequest.getPassword();
+        final String username = registrationRequest.getUsername();
+        final String password = registrationRequest.getPassword();
 
         final RegistrationResponse registrationResponse = userRegistrationService.createRegistrationResponse(username);
 

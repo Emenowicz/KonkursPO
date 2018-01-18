@@ -9,7 +9,7 @@ import java.util.List;
 
 @Transactional
 @Repository("categoryRepository")
-public interface CategoryDao extends JpaRepository<CategoryModel, Long> {
+public interface CategoryRepository extends JpaRepository<CategoryModel, Long> {
 	List<CategoryModel> findAll();
 
 	List<CategoryModel> findCategoryModelsByEditionNumber(int id);

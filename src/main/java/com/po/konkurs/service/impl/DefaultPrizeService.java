@@ -2,7 +2,7 @@ package com.po.konkurs.service.impl;
 
 import com.po.konkurs.model.CategoryModel;
 import com.po.konkurs.model.PrizeModel;
-import com.po.konkurs.repository.PrizeDao;
+import com.po.konkurs.repository.PrizeRepository;
 import com.po.konkurs.service.PrizeService;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -16,16 +16,16 @@ import java.util.List;
 @Service
 public class DefaultPrizeService implements PrizeService {
     @Resource
-    PrizeDao prizeDao;
+    PrizeRepository prizeRepository;
 
     @Override
     public List<PrizeModel> getAllPrizes() {
-        return prizeDao.findAll();
+        return prizeRepository.findAll();
     }
 
     @Override
     public List<PrizeModel> getAllPrizesForCategoryId(long id) {
-        return prizeDao.findPrizeModelsByCategory_Id(id);
+        return prizeRepository.findPrizeModelsByCategory_Id(id);
     }
 
     @Override
@@ -43,19 +43,19 @@ public class DefaultPrizeService implements PrizeService {
 
     @Override
     public void saveOrUpdate(PrizeModel prize) {
-        prizeDao.save(prize);
+        prizeRepository.save(prize);
     }
 
     @Override
     public void removePrize(Long id) {
-        prizeDao.removePrizeModelById(id);
+        prizeRepository.removePrizeModelById(id);
     }
 
-    public PrizeDao getPrizeDao() {
-        return prizeDao;
+    public PrizeRepository getPrizeRepository() {
+        return prizeRepository;
     }
 
-    public void setPrizeDao(PrizeDao prizeDao) {
-        this.prizeDao = prizeDao;
+    public void setPrizeRepository(PrizeRepository prizeRepository) {
+        this.prizeRepository = prizeRepository;
     }
 }

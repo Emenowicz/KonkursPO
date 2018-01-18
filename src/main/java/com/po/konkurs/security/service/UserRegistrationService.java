@@ -3,8 +3,8 @@ package com.po.konkurs.security.service;
 
 import com.po.konkurs.model.RoleModel;
 import com.po.konkurs.model.UserModel;
-import com.po.konkurs.repository.RoleDao;
-import com.po.konkurs.repository.UserDao;
+import com.po.konkurs.repository.RoleRepository;
+import com.po.konkurs.repository.UserRepository;
 import com.po.konkurs.security.web.model.RegistrationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,10 +19,10 @@ import java.util.HashSet;
 public class UserRegistrationService {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     @Autowired
-    private RoleDao roleDao;
+    private RoleRepository roleRepository;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -34,9 +34,9 @@ public class UserRegistrationService {
         user.setUsername(username);
         user.setPassword(passwordEncoder().encode(password));
         user.setActive(1);
-        RoleModel userRole = roleDao.findByRole("ADMIN");
+        RoleModel userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-        userDao.save(user);
+        userRepository.save(user);
     }
 
     public RegistrationResponse createRegistrationResponse(String username) {
@@ -46,6 +46,6 @@ public class UserRegistrationService {
     }
 
     private boolean isUsernameUnique(String username) {
-        return !(userDao.existsByUsername(username));
+        return !(userRepository.existsByUsername(username));
     }
 }
