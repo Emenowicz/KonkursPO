@@ -25,10 +25,6 @@ public class UserModel implements Serializable {
     @Length(min = 5, message = "*Your password must have at least 5 characters")
     @NotEmpty(message = "*Please provide your password")
     private String password;
-    @Lob
-    private byte[] idCard;
-
-    private String webpage;
 
     @Column(name = "active")
     private int active;

@@ -30,6 +30,16 @@ public class SaveUserDetailsRequest {
 
     private String biography;
 
+    private byte[] idCard;
+
+    public byte[] getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(byte[] idCard) {
+        this.idCard = idCard;
+    }
+
     public String getLastName() {
         return lastName;
     }

@@ -1,5 +1,7 @@
 package com.po.konkurs.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,31 +16,47 @@ public class UserDetailsModel {
     @OneToOne(mappedBy = "userDetails")
     private UserModel user;
 
+    @NotEmpty
     private String name;
 
+    @NotEmpty
     private String lastName;
 
+    @NotEmpty
     private String alias;
 
+    @NotEmpty
     private String nationality;
 
+    @NotEmpty
     private String bornPlace;
 
+    @NotEmpty
     private Date dateOfBirth;
 
+    @NotEmpty
     private String country;
 
+    @NotEmpty
     private String city;
 
+    @NotEmpty
     private String street;
 
+    @NotEmpty
     private String phoneNumber;
 
+    @NotEmpty
     private String mobileNumber;
 
-    private String webpage;
-
+    @NotEmpty
     private String biography;
+
+    @Lob
+    private byte[] idCard;
+
+    @NotEmpty
+    private String webpage;
 
 
     public String getName() {
@@ -159,5 +177,13 @@ public class UserDetailsModel {
 
     public void setUser(UserModel user) {
         this.user = user;
+    }
+
+    public byte[] getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(byte[] idCard) {
+        this.idCard = idCard;
     }
 }

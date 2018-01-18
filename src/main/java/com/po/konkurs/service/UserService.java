@@ -1,6 +1,7 @@
 package com.po.konkurs.service;
 
 import com.po.konkurs.model.UserModel;
+import com.po.konkurs.utils.wrappers.UserArtworkSubmissionWrapper;
 import com.po.konkurs.web.controllers.model.SaveUserDetailsRequest;
 import com.po.konkurs.web.controllers.model.UserDetailsResponse;
 
@@ -18,5 +19,7 @@ public interface UserService {
 
     UserDetailsResponse createUserDetailsResponse();
 
-    void saveUserDetails(SaveUserDetailsRequest saveUserDetailsRequest);
+    void saveUserDetails(UserArtworkSubmissionWrapper userArtworkSubmissionWrapper);
+
+    UserModel createNewRandomUser();
 }

@@ -16,6 +16,8 @@ public class UserArtworkSubmissionWrapper {
 	@Valid
 	private SubmissionModel submissionModel;
 
+	
+
 	public SubmissionModel getSubmissionModel() {
 		return submissionModel;
 	}
