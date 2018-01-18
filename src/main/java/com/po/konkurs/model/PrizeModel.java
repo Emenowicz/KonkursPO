@@ -1,6 +1,6 @@
 package com.po.konkurs.model;
 
-import com.po.konkurs.utils.enums.PrizeRank;
+import com.po.konkurs.model.enums.PrizeRank;
 
 import javax.persistence.*;
 import java.io.Serializable;
