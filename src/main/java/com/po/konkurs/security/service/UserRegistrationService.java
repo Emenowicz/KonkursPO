@@ -1,13 +1,20 @@
 package com.po.konkurs.security.service;
 
 
+import com.po.konkurs.model.RoleModel;
 import com.po.konkurs.model.UserModel;
+import com.po.konkurs.repository.RoleDao;
 import com.po.konkurs.repository.UserDao;
 import com.po.konkurs.security.stringFinals.UserRole;
 import com.po.konkurs.security.web.model.RegistrationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 @Service
 public class UserRegistrationService {
@@ -16,17 +23,32 @@ public class UserRegistrationService {
     private UserDao userDao;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private RoleDao roleDao;
+
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     public void registerUser(String username, String password) {
-        UserModel userToRegister = new UserModel();
+        UserModel user = new UserModel();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder().encode(password));
+        user.setActive(1);
+        RoleModel userRole = roleDao.findByRole("ADMIN");
+        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+        userDao.save(user);
 
-        userToRegister.setUsername(username);
-        String encodedPassword = passwordEncoder.encode(password);
-        userToRegister.setPassword(encodedPassword);
-        userToRegister.setUserRole(UserRole.USER);
-
-        userDao.save(userToRegister);
+//        UserModel userToRegister = new UserModel();
+//
+//        userToRegister.setUsername(username);
+//        String encodedPassword = passwordEncoder.encode(password);
+//        userToRegister.setPassword(encodedPassword);
+//        //TODO: TU POWINIEN BYC USER A NIE ADMIN
+//        RoleModel userRole = roleDao.findByRole("ADMIN");
+//        userToRegister.setRoles(new HashSet<>(Arrays.asList(userRole)));
+//        userDao.save(userToRegister);
     }
 
     public RegistrationResponse createRegistrationResponse(String username){

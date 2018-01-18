@@ -1,6 +1,7 @@
 package com.po.konkurs.security.web.model;
 
 public class AuthenticationResponse {
+
     private final String token;
 
     private String userRole;

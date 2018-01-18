@@ -1,5 +1,6 @@
 package com.po.konkurs.security.service.jwt;
 
+import com.po.konkurs.model.RoleModel;
 import com.po.konkurs.model.UserModel;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -21,7 +22,7 @@ public class JwtUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.commaSeparatedStringToAuthorityList(user.getUserRole());
+        return AuthorityUtils.commaSeparatedStringToAuthorityList(((RoleModel) user.getRoles().toArray()[0]).getRole());
     }
 
     @Override
@@ -51,6 +52,6 @@ public class JwtUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return user.getActive() == 1;
     }
 }

@@ -27,6 +27,7 @@ public class DefaultUserService implements UserService {
 
     @Override
     public UserModel saveOrUpdate(UserModel userModel) {
+
         return userDao.save(userModel);
     }
 
@@ -37,7 +38,7 @@ public class DefaultUserService implements UserService {
 
     @Override
     public UserModel getUserByUsername(String username) {
-        return userDao.findOneByUsername(username);
+        return userDao.findUserModelByUsername(username);
     }
 
     public UserModel getCurrentlyLoggedInUser() {

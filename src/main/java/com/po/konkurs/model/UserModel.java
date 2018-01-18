@@ -1,5 +1,8 @@
 package com.po.konkurs.model;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -12,16 +15,23 @@ public class UserModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="user_id")
     private long id;
 
     @NotNull
     private String username; /* USERNAME = EMAIL */
 
-    @NotNull
+    @Column(name = "password")
+    @Length(min = 5, message = "*Your password must have at least 5 characters")
+    @NotEmpty(message = "*Please provide your password")
     private String password;
 
-    @NotNull
-    private String userRole;
+    @Column(name = "active")
+    private int active;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleModel> roles;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userDetails_id")
@@ -58,13 +68,24 @@ public class UserModel implements Serializable {
 
     public void setPassword(String password) { this.password = password; }
 
-    public String getUserRole() { return userRole; }
+    public int getActive() {
+        return active;
+    }
 
-    public void setUserRole(String userRole) { this.userRole = userRole; }
+    public void setActive(int active) {
+        this.active = active;
+    }
 
     public UserDetailsModel getUserDetails() { return userDetails; }
 
     public void setUserDetails(UserDetailsModel userDetails) { this.userDetails = userDetails; }
 
+    public Set<RoleModel> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleModel> roles) {
+        this.roles = roles;
+    }
 
 }

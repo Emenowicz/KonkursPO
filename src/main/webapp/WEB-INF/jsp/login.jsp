@@ -1,6 +1,8 @@
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,21 +26,18 @@
     </div>
 </div>
 <div class="container">
-    <form id="login" method="POST" action="${contextPath}/login" class="form-signin">
+    <form id="login" method="POST" action='<spring:url value="/auth/login"/>' class="form-signin" >
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">Zaloguj się</h2>
             </div>
-            <c:forEach>
-
-            </c:forEach>
             <div class="card-body">
                 <div class="form-group ${error != null ? 'has-error' : ''}">
                     <span>${message}</span>
-                    <input name="username" type="text" class="form-control" placeholder="Username"
+                    <input name="username" id="username" type="text" class="form-control" placeholder="Username"
                            autofocus="true"/>
                     <br/>
-                    <input name="password" type="password" class="form-control" placeholder="Password"/>
+                    <input name="password" id="password" type="password" class="form-control" placeholder="Password"/>
                     <span>${error}</span>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <br/>
@@ -51,30 +50,30 @@
             </div>
         </div>
     </form>
-    <script>
-        $(document).ready(function () {
+    <%--<script>--%>
+        <%--$(document).ready(function () {--%>
 
-            $('#login').click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: '/login',
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify({
-                        name: $("#username").val(),
-                        password: $("#password").val()
-                    }),
-                    dataType: 'json',
-                    success: function(data){
-                        this.log("device control succeeded");
-                    },
-                    error: function(){
-                        this.log("Device control failed");
-                    },
-                });
-            });
-        });
+            <%--$('#login').click(function () {--%>
+                <%--$.ajax({--%>
+                    <%--type: "POST",--%>
+                    <%--url: '/login',--%>
+                    <%--contentType: "application/json; charset=utf-8",--%>
+                    <%--data: JSON.stringify({--%>
+                        <%--name: $("#username").val(),--%>
+                        <%--password: $("#password").val()--%>
+                    <%--}),--%>
+                    <%--dataType: 'json',--%>
+                    <%--success: function(data){--%>
+                        <%--this.log("device control succeeded");--%>
+                    <%--},--%>
+                    <%--error: function(){--%>
+                        <%--this.log("Device control failed");--%>
+                    <%--},--%>
+                <%--});--%>
+            <%--});--%>
+        <%--});--%>
 
-    </script>
+    <%--</script>--%>
 
     <div class="btn-group btn-group-justified">
         <a href="/pu1" class="btn btn-info">PU1</a>
