@@ -1,4 +1,4 @@
-package com.po.konkurs.security.service.jwt;
+package com.po.konkurs.security.service;
 
 import com.po.konkurs.model.RoleModel;
 import com.po.konkurs.model.UserModel;

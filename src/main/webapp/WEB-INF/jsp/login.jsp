@@ -1,8 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,9 +12,17 @@
 
     <title>Zaloguj się</title>
 
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
-    <script src="/jquery/jquery-3.2.1.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -50,30 +57,6 @@
             </div>
         </div>
     </form>
-    <%--<script>--%>
-        <%--$(document).ready(function () {--%>
-
-            <%--$('#login').click(function () {--%>
-                <%--$.ajax({--%>
-                    <%--type: "POST",--%>
-                    <%--url: '/login',--%>
-                    <%--contentType: "application/json; charset=utf-8",--%>
-                    <%--data: JSON.stringify({--%>
-                        <%--name: $("#username").val(),--%>
-                        <%--password: $("#password").val()--%>
-                    <%--}),--%>
-                    <%--dataType: 'json',--%>
-                    <%--success: function(data){--%>
-                        <%--this.log("device control succeeded");--%>
-                    <%--},--%>
-                    <%--error: function(){--%>
-                        <%--this.log("Device control failed");--%>
-                    <%--},--%>
-                <%--});--%>
-            <%--});--%>
-        <%--});--%>
-
-    <%--</script>--%>
 
     <div class="btn-group btn-group-justified">
         <a href="/pu1" class="btn btn-info">PU1</a>

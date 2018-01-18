@@ -3,7 +3,7 @@ package com.po.konkurs.service.impl;
 import com.po.konkurs.model.UserDetailsModel;
 import com.po.konkurs.model.UserModel;
 import com.po.konkurs.repository.UserDao;
-import com.po.konkurs.security.service.jwt.JwtUserDetails;
+import com.po.konkurs.security.service.JwtUserDetails;
 import com.po.konkurs.service.UserService;
 import com.po.konkurs.web.controllers.model.SaveUserDetailsRequest;
 import com.po.konkurs.web.controllers.model.UserDetailsResponse;
