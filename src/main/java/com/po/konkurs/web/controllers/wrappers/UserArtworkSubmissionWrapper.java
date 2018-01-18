@@ -1,4 +1,4 @@
-package com.po.konkurs.utils.wrappers;
+package com.po.konkurs.web.controllers.wrappers;
 
 import com.po.konkurs.model.ArtworkModel;
 import com.po.konkurs.model.SubmissionModel;

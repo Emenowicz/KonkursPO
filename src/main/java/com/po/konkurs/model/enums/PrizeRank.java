@@ -1,4 +1,4 @@
-package com.po.konkurs.utils.enums;
+package com.po.konkurs.model.enums;
 
 public enum PrizeRank {
     FIRST("1 miejsce"), SECOND("2 miejsce"), THIRD("3 miejsce"), MERIT("Wyróżnienie");

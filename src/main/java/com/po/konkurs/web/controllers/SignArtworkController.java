@@ -1,6 +1,6 @@
 package com.po.konkurs.web.controllers;
 
-import com.po.konkurs.utils.wrappers.UserArtworkSubmissionWrapper;
+import com.po.konkurs.web.controllers.wrappers.UserArtworkSubmissionWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
