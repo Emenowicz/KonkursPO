@@ -41,7 +41,7 @@
     </div>
 </div>
 <div class="container">
-    <form:form modelAttribute="userArtworkWrapper" class="form-horizontal" id="registerForm" method="POST"
+    <form:form modelAttribute="userArtworkWrapper" class="form-horizontal" name="registerForm" id="registerForm" method="POST"
                action="/setUserDetails">
         <div class="card">
             <div class="card-header">
@@ -53,6 +53,8 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Imię<span class="text-danger">*</span></label>
                         <div class="col-lg-8">
+                            <form:input type="hidden" name="edition" id="edition" class="form-control" required="required"
+                                        path="artworkModel.edition" value="${ currentEdition.number }"/>
                             <form:input type="text" name="name" id="name" class="form-control" required="required"
                                         path="userDetailsModel.name"/>
                         </div>
@@ -324,7 +326,7 @@
                             <form:select path="artworkModel.category" class="form-control" id="category"
                                          name="category" required="required">
                                 <option selected disabled>Wybierz kategorię...</option>
-                                <c:forEach var="category" items="${categories}">
+                                <c:forEach var="category" items="${currentEdition.categories}">
                                     <form:option value="${category.id}">${category.name}</form:option>
                                 </c:forEach>
                             </form:select>
@@ -423,31 +425,20 @@
         </div>
     </form:form>
 
+
     <script>
         $('#registerForm').validate({
-            rules: {
-                'email': {
-                    required: true,
-                    email: true
-                },
-                'email_confirmation': {
-                    equalTo: '[name="email"]'
-                }
-            }
+        rules: {
+        'email': {
+        required: true,
+        email: true
+        },
+        'email_confirmation': {
+        equalTo: '[name="email"]'
+        }
+        }
         })
-    </script>
-    <script>
-        var currentEdition;
-        $.ajax({
-            type: "GET",
-            url: "/getCurrentEdition",
-            data: currentEdition,
-            cache: false,
-            success: function(data){
-                $("#resultarea").text(data);
-            }
-        });
-    </script>
+        </script>
 </div>
 </body>
 </html>

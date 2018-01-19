@@ -3,7 +3,9 @@ package com.po.konkurs.web.controllers;
 import com.po.konkurs.model.ArtworkModel;
 import com.po.konkurs.model.SubmissionModel;
 import com.po.konkurs.model.UserDetailsModel;
+import com.po.konkurs.service.EditionService;
 import com.po.konkurs.web.controllers.wrappers.UserArtworkSubmissionWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class SignArtworkController {
 
+    @Autowired
+    private EditionService editionService;
+
     @RequestMapping(value = {"/pu1"}, method = RequestMethod.GET)
     public String pu1(Model model, RedirectAttributes redirectAttributes) {
         UserArtworkSubmissionWrapper userWrapper = new UserArtworkSubmissionWrapper();
@@ -20,6 +25,7 @@ public class SignArtworkController {
         userWrapper.setSubmissionModel(new SubmissionModel());
         userWrapper.setUserDetailsModel(new UserDetailsModel());
         model.addAttribute("userArtworkWrapper", userWrapper);
+        model.addAttribute("currentEdition", editionService.getCurrentEdition());
         return "pu1_base_details";
     }
 
