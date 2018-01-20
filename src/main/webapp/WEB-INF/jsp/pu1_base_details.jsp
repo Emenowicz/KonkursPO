@@ -153,6 +153,20 @@
                                     idPanel.attr("class", "card d-none");
                                 }
                             }
+
+//                            function checkIfEmailsAreEqual() {
+//                                console.log("dupa");
+//                                var email = document.getElementById("email");
+//                                var email2 = document.getElementById("email_confirmation");
+//                                console.log(email.value);
+//                                console.log(email2.value);
+//                                email2.setAttribute("value", "dupa");
+//
+//                                if(!email.value === email2.value){
+//                                    email.setCustomValidity("Emaile nie są takie same.");
+//                                    email2.setCustomValidity("Emaile nie są takie same.");
+//                                }
+//                            }
                         </script>
                     </div>
                 </div>
@@ -225,8 +239,7 @@
                                 class="text-danger">*</span></label>
                         <div class="col-lg-3">
                             <form:input path="userDetailsModel.zipcode" type="text" name="postcode"
-                                        id="postcode" class="form-control"
-                                        required="required"/>
+                                        id="postcode" class="form-control" required="required" pattern="[0-9]{2}-[0-9]{3}"/>
                         </div>
                     </div>
 
@@ -258,14 +271,14 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">E-mail<span class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <form:input path="userDetailsModel.email" type="text" name="email" id="email"
+                            <form:input path="userDetailsModel.email" type="email" name="email" id="email"
                                         class="form-control" required="required"/>
                         </div>
                         <label class="control-label col-lg-2">Powtórz e-mail<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <input type="text" name="email_confirmation" id="email_confirmation"
-                                   class="form-control" required="required"/>
+                            <input type="email" name="email_confirmation" id="email_confirmation"
+                                   class="form-control" required="required" />
                         </div>
                     </div>
 
@@ -434,43 +447,63 @@
 
 
     <script>
+        $('input[name=email_confirmation]').on("blur", function() {
+            'use strict';
+            var email = $('#email').val();
+            if(this.value !== email){
+                this.setCustomValidity('Emaile nie są identyczne.');
+            }
+            else if(!this.value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+                this.setCustomValidity('Email jest niepoprawny.');
+            }else{
+                this.setCustomValidity('');
+
+            }
+        });
+            //
+//
+//
+
 //        jQuery.validator.addMethod("postcodeCheck", function(value, element) {
 //            // allow any non-whitespace characters as the host part
 //            return this.optional( element ) || ^[0-9]{2}-[0-9]{3}$.test( value );
 //        }, 'Podaj prawidłowy kod pocztowy.');
 
-        jQuery.extend(jQuery.validator.messages, {
-            required: "To pole jest wymagane."
-        });
-
-        $('#registerForm').validate({
-            rules: {
-                email: {
-                    email: true,
-                    required: true
-                },
-                email_confirmation: {
-                    email: true,
-                    equalTo: "#email"
-                },
-                postcode: {
-                    pattern: /[0-9]{2}-[0-9]{3}/
-                }
-            },
-            messages: {
-                email: {
-                    required: 'Pole email musi być wypełnione.',
-                    email: 'Podany email jest nieprawidlowy'
-                },
-                email_confirmation: {
-                    email: 'Podany email jest nieprawidlowy',
-                    equalTo: 'Podane emaile nie są identyczne.'
-                },
-                postcode: {
-                    pattern: "Kod powinien być w formacie 99-999"
-                }
-            }
-        })
+//        jQuery.extend(jQuery.validator.messages, {
+//            required: "To pole jest wymagane."
+//        });
+//
+//        $('#registerForm').validate({
+//            rules: {
+//                email: {
+//                    email: true,
+//                    required: true
+//                },
+//                email_confirmation: {
+//                    email: true,
+//                    equalTo: "#email"
+//                },
+//                postcodee: {
+//                    email: true,
+//                    required: true
+////                    pattern: "/[0-9]{2}-[0-9]{3}/"
+//                }
+//            },
+//            messages: {
+//                email: {
+//                    required: 'Pole email musi być wypełnione.',
+//                    email: 'Podany email jest nieprawidlowy'
+//                },
+//                email_confirmation: {
+//                    email: 'Podany email jest nieprawidlowy',
+//                    equalTo: 'Podane emaile nie są identyczne.'
+//                },
+//                postcodee: {
+//                    email: 'Podany email jest nieprawidlowy',
+//                    pattern: "Kod powinien być w formacie 99-999"
+//                }
+//            }
+//        })
     </script>
 </div>
 </body>
