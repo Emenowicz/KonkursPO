@@ -19,6 +19,9 @@
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 
@@ -41,7 +44,8 @@
     </div>
 </div>
 <div class="container">
-    <form:form modelAttribute="userArtworkWrapper" class="form-horizontal" name="registerForm" id="registerForm" method="POST"
+    <form:form modelAttribute="userArtworkWrapper" class="form-horizontal" name="registerForm" id="registerForm"
+               method="POST"
                action="/setUserDetails">
         <div class="card">
             <div class="card-header">
@@ -53,7 +57,8 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Imię<span class="text-danger">*</span></label>
                         <div class="col-lg-8">
-                            <form:input type="hidden" name="edition" id="edition" class="form-control" required="required"
+                            <form:input type="hidden" name="edition" id="edition" class="form-control"
+                                        required="required"
                                         path="artworkModel.edition" value="${ currentEdition.number }"/>
                             <form:input type="text" name="name" id="name" class="form-control" required="required"
                                         path="userDetailsModel.name"/>
@@ -98,7 +103,7 @@
                                 class="text-danger">*</span></label>
                         <div class="col-lg-8">
                             <form:input path="userDetailsModel.bornPlace" type="text" name="birthplace" id="birthplace"
-                                        class="form-control"/>
+                                        class="form-control" required="required"/>
                         </div>
                     </div>
                         <%--TURBO DORBY DATEPICKER DO ZABRANIA DO PU3--%>
@@ -109,7 +114,7 @@
                             <div class="input-group "> <!-- Date input -->
                                 <form:input path="userDetailsModel.dateOfBirth" class="form-control" id="datepicker"
                                             name="dateofbirth" placeholder="YYYY-MM-DD"
-                                            type="text" onchange="check_for_below_25()"/>
+                                            type="text" onchange="check_for_below_25()" required="required"/>
                             </div>
                         </div>
                         <script>
@@ -174,7 +179,8 @@
                             lub pdf</label>
                         <div class="col-lg-8">
                             <div class="form-group">
-                                <form:input path="userDetailsModel.idCard" type="file" class="form-control-file" id="id_card"
+                                <form:input path="userDetailsModel.idCard" type="file" class="form-control-file"
+                                            id="id_card"
                                             aria-describedby="fileHelp" accept=".pdf, .jpg, .doc"/>
                                 <small id="fileHelp" class="form-text text-muted">2 mb max</small>
                                     <%--TODO: FILESIZE--%>
@@ -211,14 +217,15 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Miasto<span class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <form:input path="userDetailsModel.city" type="text" name="city" id="city" class="form-control"
+                            <form:input path="userDetailsModel.city" type="text" name="city" id="city"
+                                        class="form-control"
                                         required="required"/>
                         </div>
                         <label class="control-label col-lg-2">Kod pocztowy<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <form:input path="userDetailsModel.zipcode" type="text" name="postcode" format="\d{2}-\d{3}"
-                                        title="Przykładowy format: 99-999" id="postcode" class="form-control"
+                            <form:input path="userDetailsModel.zipcode" type="text" name="postcode"
+                                        id="postcode" class="form-control"
                                         required="required"/>
                         </div>
                     </div>
@@ -229,7 +236,7 @@
                         <div class="col-lg-8">
                             <form:input path="userDetailsModel.street" type="text" name="street" id="street"
                                         format="\s+\w+\s+\d+(\W\d+)?" title="Nazwa ulicy i numer domu/mieszkania"
-                                        class="form-control"/>
+                                        class="form-control" required="required"/>
                         </div>
                     </div>
 
@@ -238,12 +245,12 @@
                         <label class="control-label col-lg-2">Nr telefonu<span class="text-danger">*</span></label>
                         <div class="col-lg-3">
                             <form:input path="userDetailsModel.phoneNumber" type="text" name="telephone" id="telephone"
-                                        class="form-control"/>
+                                        class="form-control" required="required"/>
                         </div>
                         <label class="control-label col-lg-2 ">Nr komórkowy</label>
                         <div class="col-lg-3">
                             <form:input path="userDetailsModel.mobileNumber" type="text" name="mobile" id="mobile"
-                                        class="form-control"/>
+                                        class="form-control" required="required"/>
                         </div>
                     </div>
 
@@ -252,13 +259,13 @@
                         <label class="control-label col-lg-2">E-mail<span class="text-danger">*</span></label>
                         <div class="col-lg-3">
                             <form:input path="userDetailsModel.email" type="text" name="email" id="email"
-                                        class="form-control"/>
+                                        class="form-control" required="required"/>
                         </div>
                         <label class="control-label col-lg-2">Powtórz e-mail<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-3">
                             <input type="text" name="email_confirmation" id="email_confirmation"
-                                   class="form-control">
+                                   class="form-control" required="required"/>
                         </div>
                     </div>
 
@@ -289,7 +296,7 @@
                         <div class="col-lg-8">
                             <form:textarea path="userDetailsModel.biography" class="form-control" rows="5" type="text"
                                            name="biography"
-                                           id="biography" value="" maxlength="5000"></form:textarea>
+                                           id="biography" value="" maxlength="5000" required="required"/>
                         </div>
                     </div>
                 </div>
@@ -315,7 +322,7 @@
                             <div class="form-group">
                                 <form:input path="artworkModel.artworkCopy" type="file" class="form-control-file"
                                             id="work_copy"
-                                            aria-describedby="fileHelp" accept="image/*"/>
+                                            aria-describedby="fileHelp" accept="image/*" required="required"/>
                             </div>
                         </div>
                     </div>
@@ -356,7 +363,7 @@
                             <div class="form-group">
                                 <form:input path="submissionModel.paymentApproval" type="file" class="form-control-file"
                                             id="payment_confirmation"
-                                            aria-describedby="fileHelp"/>
+                                            aria-describedby="fileHelp" required="required"/>
                             </div>
                         </div>
                     </div>
@@ -427,18 +434,44 @@
 
 
     <script>
+//        jQuery.validator.addMethod("postcodeCheck", function(value, element) {
+//            // allow any non-whitespace characters as the host part
+//            return this.optional( element ) || ^[0-9]{2}-[0-9]{3}$.test( value );
+//        }, 'Podaj prawidłowy kod pocztowy.');
+
+        jQuery.extend(jQuery.validator.messages, {
+            required: "To pole jest wymagane."
+        });
+
         $('#registerForm').validate({
-        rules: {
-        'email': {
-        required: true,
-        email: true
-        },
-        'email_confirmation': {
-        equalTo: '[name="email"]'
-        }
-        }
+            rules: {
+                email: {
+                    email: true,
+                    required: true
+                },
+                email_confirmation: {
+                    email: true,
+                    equalTo: "#email"
+                },
+                postcode: {
+                    pattern: /[0-9]{2}-[0-9]{3}/
+                }
+            },
+            messages: {
+                email: {
+                    required: 'Pole email musi być wypełnione.',
+                    email: 'Podany email jest nieprawidlowy'
+                },
+                email_confirmation: {
+                    email: 'Podany email jest nieprawidlowy',
+                    equalTo: 'Podane emaile nie są identyczne.'
+                },
+                postcode: {
+                    pattern: "Kod powinien być w formacie 99-999"
+                }
+            }
         })
-        </script>
+    </script>
 </div>
 </body>
 </html>

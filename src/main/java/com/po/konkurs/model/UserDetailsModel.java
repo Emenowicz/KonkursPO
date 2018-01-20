@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Entity
@@ -18,49 +19,48 @@ public class UserDetailsModel {
     @OneToOne(mappedBy = "userDetails")
     private UserModel user;
 
-    @NotEmpty
+    @NotEmpty(message = "First name field can't be empty")
     private String name;
 
-    @NotEmpty
+    @NotEmpty(message = "Last name field can't be empty")
     private String lastName;
 
-    @NotEmpty
     private String alias;
 
-    @NotEmpty
+    @NotEmpty(message = "Nationality field can't be empty")
     private String nationality;
 
-    @NotEmpty
+    @NotEmpty(message = "Birth place field can't be empty")
     private String bornPlace;
 
-    @NotNull
+    @NotNull(message = "Date of birth field can't be empty")
     private Date dateOfBirth;
 
-    @NotEmpty
+    @NotEmpty(message = "Contry field can't be empty")
     private String country;
 
-    @NotEmpty
+    @NotEmpty(message = "City field can't be empty")
     private String city;
 
-    @NotEmpty
+    @NotEmpty(message = "Street field can't be empty")
     private String street;
 
-    @NotEmpty
+    @NotEmpty(message = "Phone number field can't be empty")
     private String phoneNumber;
 
-    @NotEmpty
+    @NotEmpty(message = "Mobile number field can't be empty")
     private String mobileNumber;
 
-    @NotEmpty
+    @NotEmpty(message = "Biography field can't be empty")
     private String biography;
 
     @Lob
     private byte[] idCard;
 
-    @NotEmpty
     private String webpage;
 
-    @NotEmpty
+    @NotEmpty(message = "Zipcode can't be empty")
+    @Pattern(regexp = "[0-9]{2}-[0-9]{3}", message = "Wrong format of zipcode. Correct format is 99-999")
     private String zipcode;
 
     public String getZipcode() {
