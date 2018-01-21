@@ -57,9 +57,6 @@
                         <div class="col-lg-1"></div>
                         <label class="control-label col-lg-2">Imię<span class="text-danger">*</span></label>
                         <div class="col-lg-8">
-                            <form:input type="hidden" name="edition" id="edition" class="form-control"
-                                        required="required"
-                                        path="artworkModel.edition" value="${ currentEdition.number }"/>
                             <form:input type="text" name="name" id="name" class="form-control" required="required"
                                         path="userDetailsModel.name"/>
                         </div>
@@ -117,57 +114,6 @@
                                             type="text" onchange="check_for_below_25()" required="required"/>
                             </div>
                         </div>
-                        <script>
-                            $('#datepicker').datepicker({
-                                uiLibrary: 'bootstrap4',
-                                iconsLibrary: 'fontawesome'
-                            });
-
-                            function diff_years(dt2, dt1) {
-                                console.log(dt2 + " - " + dt1);
-                                var diff = (dt2.getTime() - dt1.getTime()) / 1000;
-                                diff /= (60 * 60 * 24);
-                                return Math.abs(Math.round(diff / 365.25));
-                            }
-
-                            function stringToDate(str) {
-                                var date = str.split("/"), m = date[0], d = date[1], y = date[2], temp = [];
-                                temp.push(y, m, d);
-                                return (new Date(temp.join("-")));
-                            }
-
-                            function check_for_below_25() {
-                                var d = new Date();
-                                var dp = document.getElementById("datepicker").value;
-                                dp = stringToDate(dp);
-                                console.log(dp);
-                                var x = diff_years(d, dp);
-                                var idPanel = $('#id_panel');
-                                var idCardInput = $('#idcard');
-                                if (x < 25) {
-                                    idCardInput.attr("required", "required");
-                                    idPanel.attr("class", "card");
-                                }
-                                else {
-                                    idCardInput.removeAttribute("required");
-                                    idPanel.attr("class", "card d-none");
-                                }
-                            }
-
-//                            function checkIfEmailsAreEqual() {
-//                                console.log("dupa");
-//                                var email = document.getElementById("email");
-//                                var email2 = document.getElementById("email_confirmation");
-//                                console.log(email.value);
-//                                console.log(email2.value);
-//                                email2.setAttribute("value", "dupa");
-//
-//                                if(!email.value === email2.value){
-//                                    email.setCustomValidity("Emaile nie są takie same.");
-//                                    email2.setCustomValidity("Emaile nie są takie same.");
-//                                }
-//                            }
-                        </script>
                     </div>
                 </div>
             </div>
@@ -239,7 +185,8 @@
                                 class="text-danger">*</span></label>
                         <div class="col-lg-3">
                             <form:input path="userDetailsModel.zipcode" type="text" name="postcode"
-                                        id="postcode" class="form-control" required="required" pattern="[0-9]{2}-[0-9]{3}"/>
+                                        id="postcode" class="form-control" required="required"
+                                        pattern="[0-9]{2}-[0-9]{3}"/>
                         </div>
                     </div>
 
@@ -278,7 +225,7 @@
                                 class="text-danger">*</span></label>
                         <div class="col-lg-3">
                             <input type="email" name="email_confirmation" id="email_confirmation"
-                                   class="form-control" required="required" />
+                                   class="form-control" required="required"/>
                         </div>
                     </div>
 
@@ -445,65 +392,55 @@
         </div>
     </form:form>
 
-
     <script>
-        $('input[name=email_confirmation]').on("blur", function() {
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome'
+        });
+
+        function diff_years(dt2, dt1) {
+            console.log(dt2 + " - " + dt1);
+            var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+            diff /= (60 * 60 * 24);
+            return Math.abs(Math.round(diff / 365.25));
+        }
+
+        function stringToDate(str) {
+            var date = str.split("/"), m = date[0], d = date[1], y = date[2], temp = [];
+            temp.push(y, m, d);
+            return (new Date(temp.join("-")));
+        }
+
+        function check_for_below_25() {
+            var d = new Date();
+            var dp = document.getElementById("datepicker").value;
+            dp = stringToDate(dp);
+            console.log(dp);
+            var x = diff_years(d, dp);
+            var idPanel = $('#id_panel');
+            var idCardInput = $('#idcard');
+            if (x < 25) {
+                idCardInput.attr("required", "required");
+                idPanel.attr("class", "card");
+            }
+            else {
+                idCardInput.removeAttribute("required");
+                idPanel.attr("class", "card d-none");
+            }
+        }
+
+        $('input[name=email_confirmation]').on("blur", function () {
             'use strict';
             var email = $('#email').val();
-            if(this.value !== email){
+            if (this.value !== email) {
                 this.setCustomValidity('Emaile nie są identyczne.');
             }
-            else if(!this.value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+            else if (!this.value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
                 this.setCustomValidity('Email jest niepoprawny.');
-            }else{
+            } else {
                 this.setCustomValidity('');
-
             }
         });
-            //
-//
-//
-
-//        jQuery.validator.addMethod("postcodeCheck", function(value, element) {
-//            // allow any non-whitespace characters as the host part
-//            return this.optional( element ) || ^[0-9]{2}-[0-9]{3}$.test( value );
-//        }, 'Podaj prawidłowy kod pocztowy.');
-
-//        jQuery.extend(jQuery.validator.messages, {
-//            required: "To pole jest wymagane."
-//        });
-//
-//        $('#registerForm').validate({
-//            rules: {
-//                email: {
-//                    email: true,
-//                    required: true
-//                },
-//                email_confirmation: {
-//                    email: true,
-//                    equalTo: "#email"
-//                },
-//                postcodee: {
-//                    email: true,
-//                    required: true
-////                    pattern: "/[0-9]{2}-[0-9]{3}/"
-//                }
-//            },
-//            messages: {
-//                email: {
-//                    required: 'Pole email musi być wypełnione.',
-//                    email: 'Podany email jest nieprawidlowy'
-//                },
-//                email_confirmation: {
-//                    email: 'Podany email jest nieprawidlowy',
-//                    equalTo: 'Podane emaile nie są identyczne.'
-//                },
-//                postcodee: {
-//                    email: 'Podany email jest nieprawidlowy',
-//                    pattern: "Kod powinien być w formacie 99-999"
-//                }
-//            }
-//        })
     </script>
 </div>
 </body>

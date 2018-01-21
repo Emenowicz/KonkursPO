@@ -16,12 +16,6 @@ public class ArtworkModel implements Serializable {
     @JoinColumn(name = "category_id")
     private CategoryModel category;
 
-    @ManyToOne
-    @JoinColumn(name = "edition_number")
-    private EditionModel edition;
-
-
-
     @Lob
     private byte[] artworkCopy;
 
