@@ -12,7 +12,10 @@ import com.po.konkurs.service.UserService;
 import com.po.konkurs.web.controllers.model.UserDetailsResponse;
 import com.po.konkurs.web.controllers.wrappers.UserArtworkSubmissionWrapper;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -37,6 +40,11 @@ public class DefaultUserService implements UserService {
 
     @Resource
     private ArtworkService artworkService;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     public UserModel saveOrUpdate(UserModel userModel) {
@@ -87,9 +95,10 @@ public class DefaultUserService implements UserService {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?";
         String username = RandomStringUtils.random(5, characters);
         String pwd = RandomStringUtils.random( 15, characters );
+
         UserModel userModel = new UserModel();
         userModel.setUsername(username);
-        userModel.setPassword(pwd);
+        userModel.setPassword(passwordEncoder().encode(pwd));
         userModel.setActive(1);
         RoleModel userRole = roleRepository.findByRole(UserRole.USER.toString());
         userModel.setRoles(new HashSet<>(Arrays.asList(userRole)));
