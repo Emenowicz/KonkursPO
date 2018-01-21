@@ -14,12 +14,12 @@ public class UsersController {
     private UserService userService;
 
     @RequestMapping(value = "/getUserDetails", produces = "application/json", method = RequestMethod.GET)
-    public UserDetailsResponse getUserDetails(){
+    public UserDetailsResponse getUserDetails() {
         return userService.createUserDetailsResponse();
     }
 
     @RequestMapping(value = "/setUserDetails", method = RequestMethod.POST)
-    public ModelAndView setUserDetails(@ModelAttribute("userSubmissionWrapper") UserArtworkSubmissionWrapper userArtworkSubmissionWrapper){
+    public ModelAndView setUserDetails(@ModelAttribute("userSubmissionWrapper") UserArtworkSubmissionWrapper userArtworkSubmissionWrapper) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("pu1_complete");
         userService.saveUserDetails(userArtworkSubmissionWrapper);

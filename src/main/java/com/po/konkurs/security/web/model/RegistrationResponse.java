@@ -1,6 +1,6 @@
 package com.po.konkurs.security.web.model;
 
-public class RegistrationResponse{
+public class RegistrationResponse {
 
     private boolean isUsernameUnique;
 
@@ -12,7 +12,7 @@ public class RegistrationResponse{
         isUsernameUnique = usernameUnique;
     }
 
-    public boolean canUserBeRegistered(){
+    public boolean canUserBeRegistered() {
         return isUsernameUnique;
     }
 }

@@ -45,14 +45,6 @@ public class ArtworkModel implements Serializable {
         this.category = category;
     }
 
-    public EditionModel getEdition() {
-        return edition;
-    }
-
-    public void setEdition(EditionModel edition) {
-        this.edition = edition;
-    }
-
     public boolean isQualified() {
         return qualified;
     }

@@ -10,5 +10,4 @@ import javax.transaction.Transactional;
 @Repository("submissionRepository")
 public interface SubmissionRepository extends JpaRepository<SubmissionModel, Long> {
 
-
 }

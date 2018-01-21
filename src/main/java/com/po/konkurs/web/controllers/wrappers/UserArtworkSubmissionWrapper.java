@@ -8,36 +8,36 @@ import com.po.konkurs.model.UserModel;
 import javax.validation.Valid;
 
 public class UserArtworkSubmissionWrapper {
-	@Valid
-	private UserDetailsModel userDetailsModel;
+    @Valid
+    private UserDetailsModel userDetailsModel;
 
-	@Valid
-	private ArtworkModel artworkModel;
+    @Valid
+    private ArtworkModel artworkModel;
 
-	@Valid
-	private SubmissionModel submissionModel;
+    @Valid
+    private SubmissionModel submissionModel;
 
-	public SubmissionModel getSubmissionModel() {
-		return submissionModel;
-	}
+    public SubmissionModel getSubmissionModel() {
+        return submissionModel;
+    }
 
-	public void setSubmissionModel(SubmissionModel submissionModel) {
-		this.submissionModel = submissionModel;
-	}
+    public void setSubmissionModel(SubmissionModel submissionModel) {
+        this.submissionModel = submissionModel;
+    }
 
-	public UserDetailsModel getUserDetailsModel() {
-		return userDetailsModel;
-	}
+    public UserDetailsModel getUserDetailsModel() {
+        return userDetailsModel;
+    }
 
-	public void setUserDetailsModel(UserDetailsModel userDetailsModel) {
-		this.userDetailsModel = userDetailsModel;
-	}
+    public void setUserDetailsModel(UserDetailsModel userDetailsModel) {
+        this.userDetailsModel = userDetailsModel;
+    }
 
-	public ArtworkModel getArtworkModel() {
-		return artworkModel;
-	}
+    public ArtworkModel getArtworkModel() {
+        return artworkModel;
+    }
 
-	public void setArtworkModel(ArtworkModel artworkModel) {
-		this.artworkModel = artworkModel;
-	}
+    public void setArtworkModel(ArtworkModel artworkModel) {
+        this.artworkModel = artworkModel;
+    }
 }

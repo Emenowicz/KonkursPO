@@ -3,25 +3,26 @@ package com.po.konkurs.security.service;
 
 import com.po.konkurs.model.RoleModel;
 import com.po.konkurs.model.UserModel;
+import com.po.konkurs.model.enums.UserRole;
 import com.po.konkurs.repository.RoleRepository;
 import com.po.konkurs.repository.UserRepository;
 import com.po.konkurs.security.web.model.RegistrationResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.HashSet;
 
 @Service
 public class UserRegistrationService {
 
-    @Autowired
+    @Resource
     private UserRepository userRepository;
 
-    @Autowired
+    @Resource
     private RoleRepository roleRepository;
 
     @Bean
@@ -34,7 +35,7 @@ public class UserRegistrationService {
         user.setUsername(username);
         user.setPassword(passwordEncoder().encode(password));
         user.setActive(1);
-        RoleModel userRole = roleRepository.findByRole("ADMIN");
+        RoleModel userRole = roleRepository.findByRole(UserRole.ADMIN.toString());
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         userRepository.save(user);
     }

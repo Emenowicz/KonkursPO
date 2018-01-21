@@ -1,5 +1,5 @@
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <html lang="en">
 <head>
@@ -33,7 +33,7 @@
     </div>
 </div>
 <div class="container">
-    <form id="login" method="POST" action='<spring:url value="/auth/login"/>' class="form-signin" >
+    <form id="login" method="POST" action='<spring:url value="/auth/login"/>' class="form-signin">
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">Zaloguj się</h2>

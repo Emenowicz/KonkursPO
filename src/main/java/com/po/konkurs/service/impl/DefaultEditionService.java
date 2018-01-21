@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class DefaultEditionService implements EditionService {
     @Resource
-    EditionRepository editionRepository;
+    private EditionRepository editionRepository;
 
     @Override
     public EditionModel saveOrUpdate(EditionModel edition) {

@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class DefaultCategoryService implements CategoryService {
     @Resource
-    CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @Override
     public CategoryModel saveOrUpdate(CategoryModel categoryModel) {

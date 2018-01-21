@@ -1,8 +1,7 @@
 package com.po.konkurs.service.impl;
 
 import com.po.konkurs.model.*;
-import com.po.konkurs.repository.ArtworkRepository;
-import com.po.konkurs.repository.EditionRepository;
+import com.po.konkurs.model.enums.UserRole;
 import com.po.konkurs.repository.RoleRepository;
 import com.po.konkurs.repository.UserRepository;
 import com.po.konkurs.security.service.JwtUserDetails;
@@ -92,7 +91,7 @@ public class DefaultUserService implements UserService {
         userModel.setUsername(username);
         userModel.setPassword(pwd);
         userModel.setActive(1);
-        RoleModel userRole = roleRepository.findByRole("USER");
+        RoleModel userRole = roleRepository.findByRole(UserRole.USER.toString());
         userModel.setRoles(new HashSet<>(Arrays.asList(userRole)));
         return userModel;
     }

@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ArtworkOverviewController {
-
-
     @RequestMapping(value = {"/pu2"}, method = RequestMethod.GET)
     public String pu2() {
         return "pu2_artwork_overview";

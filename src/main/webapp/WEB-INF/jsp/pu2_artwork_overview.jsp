@@ -64,64 +64,64 @@
                 <div class="container-fluid">
                     <div class="row">
                         <table class="table table-responsive-lg table-striped" style="">
-                                <thead>
-                                <tr>
-                                    <th>Id<br></th>
-                                    <th>Imię</th>
-                                    <th>Nazwisko</th>
-                                    <th>Kategoria</th>
-                                    <th>Praca</th>
-                                    <th>Punkty<br></th>
-                                    <th>Zakwalifikowano<br></th>
-                                    <th>Nagrody<br></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>Digital Graphics</td>
-                                    <td><a class="btn btn-info"
-                                           href="#photo_modal" data-toggle="modal">Zobacz
-                                        pracę</a></td>
-                                    <td><a class="btn btn-info btn-block" href="#rate_modal"
-                                           data-toggle="modal">Oceń</a></td>
-                                    <td>Nie</td>
-                                    <td><a class="btn btn-info btn-block disabled" href="#prizes_modal"
-                                           data-toggle="modal">Przyznaj<br></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>Urban Art</td>
-                                    <td><a class="btn btn-info"
-                                           href="#photo_modal" data-toggle="modal">Zobacz
-                                        pracę</a></td>
-                                    <td><a class="btn btn-info btn-block" href="#rate_modal"
-                                           data-toggle="modal">Oceń</a></td>
-                                    <td>Nie</td>
-                                    <td><a class="btn btn-info btn-block disabled" href="#prizes_modal"
-                                           data-toggle="modal">Przyznaj<br></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>Performance</td>
-                                    <td><a class="btn btn-info"
-                                           href="#photo_modal" data-toggle="modal">Zobacz
-                                        pracę</a></td>
-                                    <td><a class="btn btn-info btn-block" href="#rating_modal" data-toggle="modal">Zobacz
-                                        ocenę</a></td>
-                                    <td>Tak</td>
-                                    <td><a class="btn btn-info btn-block" href="#prizes_modal"
-                                           data-toggle="modal">Przyznaj<br></a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <thead>
+                            <tr>
+                                <th>Id<br></th>
+                                <th>Imię</th>
+                                <th>Nazwisko</th>
+                                <th>Kategoria</th>
+                                <th>Praca</th>
+                                <th>Punkty<br></th>
+                                <th>Zakwalifikowano<br></th>
+                                <th>Nagrody<br></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>Digital Graphics</td>
+                                <td><a class="btn btn-info"
+                                       href="#photo_modal" data-toggle="modal">Zobacz
+                                    pracę</a></td>
+                                <td><a class="btn btn-info btn-block" href="#rate_modal"
+                                       data-toggle="modal">Oceń</a></td>
+                                <td>Nie</td>
+                                <td><a class="btn btn-info btn-block disabled" href="#prizes_modal"
+                                       data-toggle="modal">Przyznaj<br></a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>Urban Art</td>
+                                <td><a class="btn btn-info"
+                                       href="#photo_modal" data-toggle="modal">Zobacz
+                                    pracę</a></td>
+                                <td><a class="btn btn-info btn-block" href="#rate_modal"
+                                       data-toggle="modal">Oceń</a></td>
+                                <td>Nie</td>
+                                <td><a class="btn btn-info btn-block disabled" href="#prizes_modal"
+                                       data-toggle="modal">Przyznaj<br></a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>Performance</td>
+                                <td><a class="btn btn-info"
+                                       href="#photo_modal" data-toggle="modal">Zobacz
+                                    pracę</a></td>
+                                <td><a class="btn btn-info btn-block" href="#rating_modal" data-toggle="modal">Zobacz
+                                    ocenę</a></td>
+                                <td>Tak</td>
+                                <td><a class="btn btn-info btn-block" href="#prizes_modal"
+                                       data-toggle="modal">Przyznaj<br></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

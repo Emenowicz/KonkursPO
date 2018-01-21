@@ -361,7 +361,7 @@
                                 <form:input path="name" type="text" name="name" id="categoryName" class="form-control"
                                             required="required"
                                             placeholder="" data-msg-required="To pole jest wymagane"
-                                            aria-required="true"></form:input>
+                                            aria-required="true"/>
                             </div>
                         </div>
                         <div class="row" style="padding-top: 20px;">
@@ -371,7 +371,7 @@
                                 <form:textarea path="description" name="category_description" id="categoryDescription"
                                                rows="6"
                                                class="form-control"
-                                               placeholder=""></form:textarea>
+                                               placeholder=""/>
                             </div>
                         </div>
                         <form:hidden path="edition" value="${selectedEdition.number}"/>
@@ -415,7 +415,7 @@
                                 <form:input path="name" type="text" name="name" id="modalName" class="form-control"
                                             required="required"
                                             placeholder="" data-msg-required="To pole jest wymagane"
-                                            aria-required="true"></form:input>
+                                            aria-required="true"/>
                             </div>
                         </div>
                         <div class="row" style="padding-top: 20px;">
@@ -534,7 +534,7 @@
                             <div class="col-lg-8">
                                 <form:textarea path="description" name="description" id="description" rows="6"
                                                class="form-control"
-                                               placeholder=""></form:textarea>
+                                               placeholder=""/>
                             </div>
                         </div>
                     </div>
@@ -630,7 +630,7 @@
                             <div class="col-lg-8">
                                 <form:textarea path="description" name="description" id="description" rows="6"
                                                class="form-control"
-                                               placeholder=""></form:textarea>
+                                               placeholder=""/>
                             </div>
                         </div>
                     </div>
